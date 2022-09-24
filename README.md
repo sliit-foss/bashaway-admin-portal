@@ -11,12 +11,10 @@ yarn dev
 ```
 
 ### Installed dependencies out of the box -
-* Tailwind
-* React Icons
-* Prettier Quick
-* Husky
+
+- Tailwind
+- React Icons
+- Prettier Quick
+- Husky
 
 ### Make sure when you do development, create a new branch from `development` and pull request into `development` branch.
-
-
-
