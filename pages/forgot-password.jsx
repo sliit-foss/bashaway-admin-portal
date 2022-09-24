@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { forgotPassword } from "../services/auth";
-import { Button, Input } from "../components/common";
-import Layout from "../components/layout";
+import { forgotPassword } from "@services/auth";
+import { Button, Input } from "@components/common";
+import Layout from "@components/layout";
 
 const ForgotPassword = () => {
   const router = useRouter();

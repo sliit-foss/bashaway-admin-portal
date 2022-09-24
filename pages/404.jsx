@@ -1,5 +1,5 @@
 import { Watch } from "react-loader-spinner";
-import Layout from "../components/layout";
+import Layout from "@components/layout";
 
 const NotFound = () => {
   return (

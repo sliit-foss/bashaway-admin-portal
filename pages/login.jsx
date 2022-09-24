@@ -2,10 +2,10 @@ import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { login } from "../services/auth";
-import { Button, Input } from "../components/common";
-import Layout from "../components/layout";
-import { setUser } from "../store/user";
+import { login } from "@services/auth";
+import { Button, Input } from "@components/common";
+import Layout from "@components/layout";
+import { setUser } from "@store/user";
 
 const Login = () => {
   const router = useRouter();

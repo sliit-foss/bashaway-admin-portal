@@ -4,7 +4,7 @@ import store from "../../store";
 import { toggleLoader } from "../../store/ui";
 
 export const axiosInstance = axios.create({
-  baseURL: process.env.VITE_BASHAWAY_BE_URL,
+  baseURL: process.env.NEXT_PUBLIC_BASHAWAY_BE_URL,
   headers: {
     "Content-Type": "application/json",
   },
