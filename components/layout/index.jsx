@@ -1,14 +1,29 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { ToastContainer } from "react-toastify";
+import { isEmpty } from "lodash";
 import { Loader } from "../common";
 import Footer from "./footer";
 import Navbar from "./navbar";
+import { useEffectOnce } from "@hooks/index";
+import { setCurrentUser } from "@store/user";
+import { getCurrentUser } from "@services/auth";
 
 const Layout = ({ children, title = "Bashaway" }) => {
   const router = useRouter();
+
+  const dispatch = useDispatch()
+
+  const { currentUser } = useSelector((state) => state.user);
+
+  useEffectOnce(() => {
+    isEmpty(currentUser) && getCurrentUser().then((res) => {
+      dispatch(setCurrentUser(res.data));
+    });
+  });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });

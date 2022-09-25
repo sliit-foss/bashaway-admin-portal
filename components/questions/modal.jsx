@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux';
 import { Modal, Button } from 'flowbite-react'
 import { toast } from "react-toastify";
 import MarkdownIt from 'markdown-it';
@@ -6,9 +7,9 @@ import MdEditor from 'react-markdown-editor-lite';
 import { addQuestion, updateQuestion } from '@services/question'
 import { Dropdown, Input } from '@components/common';
 import { questionFilters } from '@filters/question';
-import 'react-markdown-editor-lite/lib/index.css';
 import { enabledFilters } from '@filters/index';
 import { pick } from 'lodash';
+import 'react-markdown-editor-lite/lib/index.css';
 
 const mdParser = new MarkdownIt();
 
@@ -19,11 +20,13 @@ const initialFormData = {
     constraints: "",
     max_score: null,
     enabled: "",
+    creator_lock: "",
     codebase_url: ""
 }
 
 const QuestionModal = ({ question, show, setShow, refresh = () => { } }) => {
 
+    const { currentUser } = useSelector((state) => state.user);
 
     const [formData, setFormData] = useState(question ? {
         ...question,
@@ -80,15 +83,16 @@ const QuestionModal = ({ question, show, setShow, refresh = () => { } }) => {
                 <form>
                     <div className="flex flex-col gap-y-4 mb-4">
                         <div className='w-full flex justify-center items-center gap-x-4'>
-                            <Input placeholder="Question Name" name="name" value={formData.name} wrapperclasses="w-full md:w-1/2" className="h-14 sm:h-14" theme="light" onChange={onChange} />
-                            <Input placeholder="Codebase Url" name="codebase_url" value={formData.codebase_url} wrapperclasses="w-full md:w-1/2" className="h-14 sm:h-14" theme="light" onChange={onChange} />
+                            <Input placeholder="Question Name" name="name" value={formData.name} wrapperclasses="w-full md:w-1/2" className="h-12 sm:h-14" theme="light" onChange={onChange} />
+                            <Input placeholder="Codebase Url" name="codebase_url" value={formData.codebase_url} wrapperclasses="w-full md:w-1/2" className="h-12 sm:h-14" theme="light" onChange={onChange} />
                         </div>
-                        <div className='w-full flex justify-center items-center gap-x-4'>
-                            <Dropdown filterkey="difficulty" placeholder="Select Difficulty" options={questionFilters.find((filter) => filter.key === 'difficulty').options} wrapperclasses="w-full md:w-4/12" className="h-12 sm:h-14" theme="light" value={formData.difficulty} onChange={onChange} />
-                            <Dropdown filterkey="enabled" placeholder="Status" options={enabledFilters} wrapperclasses="w-full md:w-4/12" className="h-12 sm:h-14" theme="light" value={formData.enabled} onChange={onChange} />
-                            <Input placeholder="Maximum Score" name="max_score" value={formData.max_score} type="number" wrapperclasses="w-full md:w-4/12" className="h-14 sm:h-14" theme="light" onChange={onChange} />
+                        <div className='w-full flex flex-col md:flex-row justify-center items-center gap-y-4 md:gap-y-0 gap-x-4'>
+                            <Dropdown filterkey="difficulty" placeholder="Select Difficulty" options={questionFilters.find((filter) => filter.key === 'difficulty').options} wrapperclasses="w-full md:w-4/12" className="w-full h-12 sm:h-14" theme="light" value={formData.difficulty} onChange={onChange} />
+                            <Dropdown filterkey="enabled" placeholder="Status" options={enabledFilters} wrapperclasses="w-full md:w-4/12" className="w-full h-12 sm:h-14" theme="light" value={formData.enabled} onChange={onChange} />
+                            {(!question || question.creator === currentUser._id) && <Dropdown filterkey="creator_lock" placeholder="Creator Lock" options={enabledFilters} wrapperclasses="w-full md:w-4/12" className="w-full h-12 sm:h-14" theme="light" value={formData.creator_lock} onChange={onChange} />}
+                            <Input placeholder="Maximum Score" name="max_score" value={formData.max_score} type="number" wrapperclasses="w-full md:w-4/12" className="w-full h-12 sm:h-14" theme="light" onChange={onChange} />
                         </div>
-                        <Input placeholder="Constraints (Comma Separated)" name="constraints" value={formData.constraints} className="h-14 sm:h-14" theme="light" onChange={onChange} />
+                        <Input placeholder="Constraints (Comma Separated)" name="constraints" value={formData.constraints} className="h-12 sm:h-14" theme="light" onChange={onChange} />
                         <MdEditor style={{ height: '300px' }} placeholder="Enter question description" value={formData.description} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
                     </div>
                 </form>

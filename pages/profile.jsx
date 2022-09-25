@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { isEmpty } from "lodash";
 import { Button, Input } from "@components/common";
 import Layout from "@components/layout";
 import { getCurrentUser } from "@services/auth";
@@ -19,7 +20,7 @@ const Register = () => {
   const [formData, setFormData] = useState(user);
 
   useEffectOnce(() => {
-    getCurrentUser().then((res) => {
+    isEmpty(user) && getCurrentUser().then((res) => {
       dispatch(setCurrentUser(res.data));
     });
   });
