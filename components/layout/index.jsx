@@ -1,21 +1,28 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { ToastContainer } from "react-toastify";
 import { isEmpty } from "lodash";
+import { useEffectOnce } from "@hooks/index";
+import { getCurrentUser } from "@services/auth";
+import { setCurrentUser } from "@store/user";
 import { Loader } from "../common";
 import Footer from "./footer";
 import Navbar from "./navbar";
-import { useEffectOnce } from "@hooks/index";
-import { setCurrentUser } from "@store/user";
-import { getCurrentUser } from "@services/auth";
+import FOG from 'vanta/dist/vanta.fog.min'
 
 const Layout = ({ children, title = "Bashaway" }) => {
   const router = useRouter();
 
   const dispatch = useDispatch()
+
+  const myRef = useRef(null)
+
+  const [vantaEffect, setVantaEffect] = useState(0)
+
+  const { backgroundAnimation } = useSelector((state) => state.ui)
 
   const { currentUser } = useSelector((state) => state.user);
 
@@ -29,6 +36,39 @@ const Layout = ({ children, title = "Bashaway" }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [router.pathname]);
 
+  useEffect(() => {
+    if (backgroundAnimation) {
+      document.getElementById('vanta-placeholder').style.display = 'none'
+      document.getElementById('vanta-placeholder').style.backgroundImage = 'radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1))'
+    }
+  }, [])
+
+  useEffect(() => {
+    if (backgroundAnimation) {
+      if (!vantaEffect) {
+        document.getElementById('vanta-placeholder').style.display = 'block'
+        setVantaEffect(
+          FOG({
+            el: myRef.current,
+            minHeight: 200.0,
+            minWidth: 200.0,
+            highlightColor: 0x0,
+            midtoneColor: 0xc0c0c,
+            lowlightColor: 0x414141,
+            baseColor: 0x90909,
+            blurFactor: 0.37,
+          }),
+        )
+      }
+      return () => {
+        if (vantaEffect) {
+          vantaEffect.destroy()
+          setVantaEffect(0)
+        }
+      }
+    }
+  }, [vantaEffect, backgroundAnimation])
+
   return (
     <>
       <Head>
@@ -37,6 +77,7 @@ const Layout = ({ children, title = "Bashaway" }) => {
         <meta name="image" content="/assets/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Race against time with automation" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r119/three.min.js" />
       </Head>
       <motion.main
         className="bg-black font-inter overflow-x-hidden"
@@ -50,6 +91,7 @@ const Layout = ({ children, title = "Bashaway" }) => {
         <Footer />
         <ToastContainer />
         <Loader />
+        {backgroundAnimation && <div id="vanta-placeholder" ref={myRef} className="w-full h-full bg-black fixed top-0 right-0" />}
       </motion.main>
     </>
   );

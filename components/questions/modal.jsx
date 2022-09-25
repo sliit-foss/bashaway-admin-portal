@@ -84,7 +84,7 @@ const QuestionModal = ({ question, show, setShow, refresh = () => { } }) => {
                     <div className="flex flex-col gap-y-4 mb-4">
                         <div className='w-full flex justify-center items-center gap-x-4'>
                             <Input placeholder="Question Name" name="name" value={formData.name} wrapperclasses="w-full md:w-1/2" className="h-12 sm:h-14" theme="light" onChange={onChange} />
-                            <Input placeholder="Codebase Url" name="codebase_url" value={formData.codebase_url} wrapperclasses="w-full md:w-1/2" className="h-12 sm:h-14" theme="light" onChange={onChange} />
+                            <Input placeholder="Codebase URL" name="codebase_url" value={formData.codebase_url} wrapperclasses="w-full md:w-1/2" className="h-12 sm:h-14" theme="light" onChange={onChange} />
                         </div>
                         <div className='w-full flex flex-col md:flex-row justify-center items-center gap-y-4 md:gap-y-0 gap-x-4'>
                             <Dropdown filterkey="difficulty" placeholder="Select Difficulty" options={questionFilters.find((filter) => filter.key === 'difficulty').options} wrapperclasses="w-full md:w-4/12" className="w-full h-12 sm:h-14" theme="light" value={formData.difficulty} onChange={onChange} />
