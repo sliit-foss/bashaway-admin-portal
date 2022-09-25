@@ -67,8 +67,8 @@ const Submissions = () => {
             <div className="w-10/12 min-h-screen flex flex-col justify-between items-center mb-16">
               <div className="w-full h-full flex flex-col justify-start items-center gap-y-6">
                 {submissionRes.docs?.length > 0 ? (
-                  submissionRes.docs?.map((submission) => {
-                    return <Submission submission={submission} />
+                  submissionRes.docs?.map((submission, index) => {
+                    return <Submission key={`submission-${submission._id}-${index}`} submission={submission} />
                   })
                 ) : (
                   <NoRecords text="No Submissions Made Yet" className="mt-12" />

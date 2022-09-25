@@ -33,4 +33,9 @@ export const questionSorts = [
     label: 'Sort by maximum score',
     direction: 0,
   },
+  {
+    key: 'created_at',
+    label: 'Sort by created time',
+    direction: 0,
+  },
 ]

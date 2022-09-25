@@ -3,8 +3,9 @@ import { useRouter } from "next/router";
 import { IoStar } from 'react-icons/io5'
 import ReactMarkdown from 'react-markdown'
 import Layout from '@components/layout'
-import { getQuestionById } from '@services/question'
 import { Button } from '@components/common'
+import { QuestionModal } from '@components/questions';
+import { getQuestionById } from '@services/question'
 
 export default function QuestionView() {
 
@@ -14,10 +15,16 @@ export default function QuestionView() {
 
   const [question, setQuestion] = useState(null)
 
-  useEffect(() => {
-    id && getQuestionById(id).then((res) => {
+  const [showQuestionModal, setShowQuestionModal] = useState(false)
+
+  const refresh = () => {
+    getQuestionById(id).then((res) => {
       setQuestion(res.data)
     })
+  }
+
+  useEffect(() => {
+    id && refresh()
   }, [id])
 
   return (
@@ -56,7 +63,7 @@ export default function QuestionView() {
                   <Button
                     className="px-6 py-2 font-semibold md:text-xl focus:outline-none focus:ring focus:ring-offset-1 bg-white focus:ring-black focus:ring-opacity-10"
                     onClick={() => {
-                      document.getElementById('file-upload').click()
+                      setShowQuestionModal(true)
                     }}
                   >
                     Modify Question
@@ -64,7 +71,7 @@ export default function QuestionView() {
                 </div>
               </div>
               <div className="w-11/12 flex justify-start items-center my-6 pl-6">
-                <ReactMarkdown className="invert markdown" children={question.description} />
+                <ReactMarkdown className="invert markdown">{question.description}</ReactMarkdown>
               </div>
               <div className="w-10/12 flex mt-10 mb-4 ml-6 justify-start items-center">
                 <a href={question.codebase_url} download>
@@ -72,6 +79,7 @@ export default function QuestionView() {
                 </a>
               </div>
             </div>
+            <QuestionModal question={question} show={showQuestionModal} setShow={setShowQuestionModal} refresh={refresh}/>
           </div>
         )}
       </div>

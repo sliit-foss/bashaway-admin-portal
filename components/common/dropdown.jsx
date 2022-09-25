@@ -7,7 +7,7 @@ const wrapperId = uuidv4()
 const inputId = uuidv4()
 
 const Dropdown = ({ options, onChange, ...props }) => {
-  const [selectedOption, setSelectedOption] = useState(props.default || null)
+  const [selectedOption, setSelectedOption] = useState(props.default || props.value || null)
 
   const [showItems, setShowItems] = useState(false)
 
@@ -40,8 +40,8 @@ const Dropdown = ({ options, onChange, ...props }) => {
     <div id={wrapperId} className={`${props.wrapperclasses || ''} w-full relative`}>
       <input
         id={id}
-        className={twMerge(`w-full h-14 sm:h-16 bg-transparent border-[1px] border-gray-500 focus:border-primary outline-none rounded-md text-gray-100 px-4 py-2 text-base font-normal hover:text-white transition duration-300 cursor-pointer hide-blink ${props.className}`, props.className)}
-        value={options.find((opt) => opt.key === selectedOption)?.label || 'Select'}
+        className={twMerge(`w-full h-14 sm:h-16 bg-transparent border-[1px] border-gray-500 focus:border-primary outline-none rounded-md ${props.theme === 'light' ? 'text-black hover:text-black' : 'text-gray-100 hover:text-white'} px-4 py-2 text-base font-normal transition duration-300 cursor-pointer hide-blink ${props.className}`, props.className)}
+        value={options.find((opt) => opt.key === selectedOption)?.label || props.value || props.placeholder || 'Select'}
         onClick={() => {
           setShowItems(!showItems)
         }}
@@ -69,9 +69,9 @@ const Dropdown = ({ options, onChange, ...props }) => {
           </div>
         </div>
       )}
-      {selectedOption && (
+      {selectedOption !== null && selectedOption !== 'undefined' && (
         <div className={`w-fit h-full absolute right-3 top-0 flex justify-center items-center ${props.className.includes('hidden') || props.className.includes('opacity-0') ? 'hidden opacity-0' : ''}`}>
-          <AiOutlineClose className="w-[1.2rem] h-[1.2rem] text-gray-100 cursor-pointer" onClick={onSelect} />
+          <AiOutlineClose className={`w-[1.2rem] h-[1.2rem] ${props.theme === 'light' ? 'text-black' : 'text-gray-100'}text-gray-100 cursor-pointer`} onClick={onSelect} />
         </div>
       )}
     </div>
