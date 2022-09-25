@@ -1,8 +1,8 @@
 import { axiosInstance, apiRequest } from "./core/axios";
 
-export const getAllUsers = async (showLoader) => {
+export const getAllUsers = async (filterQuery = "", sortQuery = "", page, showLoader) => {
   return await apiRequest(
-    () => axiosInstance.get(`/api/users`),
+    () => axiosInstance.get(`/api/users?${filterQuery}&${sortQuery}${page ? `&page=${page}&limit=10` : ''}`),
     showLoader
   );
 };

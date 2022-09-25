@@ -7,20 +7,20 @@ import Layout from "@components/layout";
 import { getCurrentUser } from "@services/auth";
 import { updateUser } from "@services/user";
 import { useEffectOnce } from "@hooks";
-import { setUser } from "@store/user";
+import { setCurrentUser } from "@store/user";
 
 const Register = () => {
   const router = useRouter();
 
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user);
+  const { currentUser: user } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState(user);
 
   useEffectOnce(() => {
     getCurrentUser().then((res) => {
-      dispatch(setUser(res.data));
+      dispatch(setCurrentUser(res.data));
     });
   });
 
@@ -34,8 +34,8 @@ const Register = () => {
       name: formData.name,
     }).then((res) => {
       if (res.success) {
-        dispatch(setUser(formData));
-        toast.success("Team details updated successfully", {
+        dispatch(setCurrentUser(formData));
+        toast.success("User details updated successfully", {
           autoClose: 3500,
         });
       }

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { login } from "@services/auth";
 import { Button, Input } from "@components/common";
 import Layout from "@components/layout";
-import { setUser } from "@store/user";
+import { setCurrentUser } from "@store/user";
 
 const Login = () => {
   const router = useRouter();
@@ -21,7 +21,7 @@ const Login = () => {
       if (res.success) {
         if (res.data.user.role === "ADMIN") {
           localStorage.setItem("token", res.data.access_token);
-          dispatch(setUser(res.data.user));
+          dispatch(setCurrentUser(res.data.user));
           router.push("/");
         } else {
           toast.error("Invalid credentials");
