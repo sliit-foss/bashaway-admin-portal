@@ -37,8 +37,14 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: #0076ff;
 }
 
-input:-internal-autofill-selected {
+.dark:-internal-autofill-selected {
   background-color: #ff0000 !important;
   color-scheme: dark !important;
+  border: 1px solid #0070f3 !important;
+}
+
+.light:-internal-autofill-selected {
+  background-color: #ff0000 !important;
+  color-scheme: light !important;
   border: 1px solid #0070f3 !important;
 }

@@ -47,6 +47,7 @@ const QuestionModal = ({ question, show, setShow, refresh = () => { } }) => {
             await addQuestion(payload).then((res) => {
                 if (res.success) {
                     toast.success('Question added successfully')
+                    setFormData(initialFormData)
                 }
             })
         }

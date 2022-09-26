@@ -27,10 +27,15 @@ const User = ({ user, refresh }) => {
                     <IoStar className="text-white" />
                     <h3 className="ml-2 text-md md:text-lg text-white">{user.name}</h3>
                 </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 text-xs text ml-6 mt-4 mb-3 text-gray-400">
-                    <p>Email&nbsp; - <span className='ml-1'>{user.email}</span></p>
-                    <p>Type&nbsp; - <span className='ml-1 text-primary'>{user.role === 'ADMIN' ? 'Admin' : 'Competitor'}</span></p>
-                    <p>Score&nbsp; - <span className='ml-1 text-primary'>{user.score || 0}</span></p>
+                <div className="flex flex-row gap-x-6 gap-y-2 flex-wrap text-xs text ml-6 mt-4 mb-3 text-gray-400">
+                    <p className='w-full sm:w-1/2 2xl:w-1/4'>Email&nbsp; - <span className='ml-1'>{user.email}</span></p>
+                    <p className='w-full sm:w-5/12 2xl:w-2/12'>Type&nbsp; - <span className='ml-1 text-primary'>{user.role === 'ADMIN' ? 'Admin' : 'Competitor'}</span></p>
+                    {
+                       user.role === 'GROUP' && <>
+                            <p className='w-full sm:w-1/2 2xl:w-1/4'>University&nbsp; - <span className='ml-1 text-primary'>{user.university}</span></p>
+                            <p className='w-full sm:w-5/12 2xl:w-2/12'>Score&nbsp; - <span className='ml-1 text-primary'>{user.score || 0}</span></p>
+                        </>
+                    }
                 </div>
                 {
                     user.role === 'GROUP' && <>
@@ -40,8 +45,8 @@ const User = ({ user, refresh }) => {
                         </div>
                         <div className={`mt-4 ${isDetailsSectionOpen ? 'h-auto': 'h-0 opacity-0 pointer-events-none'} transition duration-600`}>
                             {
-                                user.members?.map((member, index) => (<div key={`${user.name}-${member.email}-${index}`} className="flex flex-row gap-x-12 flex-wrap text-xs text ml-6 mt-4 mb-1 text-gray-400">
-                                    <p className='w-full md:w-1/2 lg:w-1/4'>Name&nbsp; - <span className='ml-1'>{member.name}</span></p>
+                                user.members?.map((member, index) => (<div key={`${user.name}-${member.email}-${index}`} className="flex flex-row gap-x-6 gap-y-2 flex-wrap text-xs text ml-6 mt-4 mb-1 text-gray-400">
+                                    <p className='w-full md:w-1/2 lg:w-3/12'>Name&nbsp; - <span className='ml-1'>{member.name}</span></p>
                                     <p className='w-full md:w-1/2 lg:w-3/12'>Email&nbsp; - <span className='ml-1 text-primary'>{member.email}</span></p>
                                     <p className='w-full md:w-1/2 lg:w-2/12'>Phone&nbsp; - <span className='ml-1 text-primary'>{member.phone}</span></p>
                                     <p className='w-full md:w-1/2 lg:w-1/12'>Year&nbsp; - <span className='ml-1 text-primary'>{member.academic_year}</span></p>

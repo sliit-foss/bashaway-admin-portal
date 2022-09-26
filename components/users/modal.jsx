@@ -1,20 +1,12 @@
 import { useState } from 'react'
 import { Modal, Button } from 'flowbite-react'
 import { toast } from "react-toastify";
-import { Dropdown, Input } from '@components/common';
-import { enabledFilters } from '@filters';
-import { pick } from 'lodash';
+import { Input } from '@components/common';
 import { addUser, updateUser } from '@services/user';
 
 const initialFormData = {
     name: "",
-    description: "",
-    difficulty: "",
-    constraints: "",
-    max_score: null,
-    enabled: "",
-    creator_lock: "",
-    codebase_url: ""
+    email: ""
 }
 
 const UserModal = ({ user, show, setShow, refresh = () => { } }) => {
@@ -23,7 +15,9 @@ const UserModal = ({ user, show, setShow, refresh = () => { } }) => {
 
     const onSubmit = async () => {
         if (user) {
-            await updateUser(user._id, pick(formData, Object.keys(initialFormData))).then((res) => {
+            await updateUser(user._id, {
+                name: formData.name,
+            }).then((res) => {
                 if (res.success) {
                     toast.success('User updated successfully')
                 }
@@ -32,6 +26,7 @@ const UserModal = ({ user, show, setShow, refresh = () => { } }) => {
             await addUser(formData).then((res) => {
                 if (res.success) {
                     toast.success('User added successfully')
+                    setFormData(initialFormData)
                 }
             })
         }
@@ -49,7 +44,7 @@ const UserModal = ({ user, show, setShow, refresh = () => { } }) => {
     return (
         <Modal
             show={show}
-            size="7xl"
+            size="2xl"
             onClose={() => {
                 setShow(false)
             }}
@@ -58,15 +53,8 @@ const UserModal = ({ user, show, setShow, refresh = () => { } }) => {
             <Modal.Body>
                 <form>
                     <div className="flex flex-col gap-y-4 mb-4">
-                        <div className='w-full flex justify-center items-center gap-x-4'>
-                            <Input placeholder="Question Name" name="name" value={formData.name} wrapperclasses="w-full md:w-1/2" className="h-12 sm:h-14" theme="light" onChange={onChange} />
-                            <Input placeholder="Codebase URL" name="codebase_url" value={formData.codebase_url} wrapperclasses="w-full md:w-1/2" className="h-12 sm:h-14" theme="light" onChange={onChange} />
-                        </div>
-                        <div className='w-full flex flex-col md:flex-row justify-center items-center gap-y-4 md:gap-y-0 gap-x-4'>
-                            <Dropdown filterkey="enabled" placeholder="Status" options={enabledFilters} wrapperclasses="w-full md:w-4/12" className="w-full h-12 sm:h-14" theme="light" value={formData.enabled} onChange={onChange} />
-                            <Input placeholder="Maximum Score" name="max_score" value={formData.max_score} type="number" wrapperclasses="w-full md:w-4/12" className="w-full h-12 sm:h-14" theme="light" onChange={onChange} />
-                        </div>
-                        <Input placeholder="Constraints (Comma Separated)" name="constraints" value={formData.constraints} className="h-12 sm:h-14" theme="light" onChange={onChange} />
+                        <Input placeholder="User Name" name="name" value={formData.name} className="h-12 sm:h-14 light" theme="light" onChange={onChange} />
+                        {!user && <Input placeholder="Email" name="email" value={formData.email} className="h-12 sm:h-14 light" theme="light" onChange={onChange} />}
                     </div>
                 </form>
             </Modal.Body>
