@@ -27,7 +27,7 @@ const Sorts = ({ sorts, setSortQuery }) => {
 
   return (
     <div className="w-full mt-4">
-      <div className="w-full flex justify-start items-center gap-6">
+      <div className="w-full flex justify-start items-center flex-wrap gap-6">
         {sortLocalState.map((sort, index) => {
           return (
             <div key={`sort-${sort.key}-${index}`} className="w-1/2 md:w-1/4 h-full flex flex-col justify-center items-start">

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { Pagination } from 'flowbite-react'
 import Layout from '@components/layout'
 import { Button, Filters, Sorts, NoRecords } from '@components/common'
-import { Submission } from '@components/submissions'
+import { GradeModal, Submission } from '@components/submissions'
 import { getAllSubmissions } from '@services/submission'
 import { submissionFilters, submissionSorts } from '@filters'
 import { useEffectOnce } from '@hooks/index'
@@ -28,10 +28,20 @@ const Submissions = () => {
   const [filterQuery, setFilterQuery] = useState('')
   const [sortQuery, setSortQuery] = useState('')
 
-  useEffect(() => {
-    questionId && getAllSubmissions(`${filterQuery}filter[question]=${questionId}`, sortQuery, page).then((res) => {
+  const [gradeModalParams, setGradeModalParams] = useState({
+    open: false,
+    submission: null,
+  })
+  const [selectedSubmission, setSelectedSubmission] = useState(null)
+
+  const refresh = () => {
+    getAllSubmissions(`${filterQuery}filter[question]=${questionId}`, sortQuery, page).then((res) => {
       setSubmissionRes(res.data)
     })
+  }
+
+  useEffect(() => {
+    questionId && refresh()
   }, [questionId, page, filterQuery, sortQuery])
 
   useEffectOnce(() => {
@@ -68,7 +78,12 @@ const Submissions = () => {
               <div className="w-full h-full flex flex-col justify-start items-center gap-y-6">
                 {submissionRes.docs?.length > 0 ? (
                   submissionRes.docs?.map((submission, index) => {
-                    return <Submission key={`submission-${submission._id}-${index}`} submission={submission} />
+                    return <Submission key={`submission-${submission._id}-${index}`} submission={submission} onGrade={() => {
+                      setGradeModalParams({
+                        open: true,
+                        submission,
+                      })
+                    }} />
                   })
                 ) : (
                   <NoRecords text="No Submissions Made Yet" className="mt-12" />
@@ -88,6 +103,12 @@ const Submissions = () => {
           </>
         )}
       </div>
+      <GradeModal submission={gradeModalParams.submission} show={gradeModalParams.open} setShow={(open) => {
+        setGradeModalParams({
+          ...gradeModalParams,
+          open,
+        })
+      }} refresh={refresh} />
     </Layout>
   )
 }
