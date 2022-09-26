@@ -21,6 +21,13 @@ export const updateUser = async (id, data, showLoader) => {
   );
 };
 
+export const syncScores = async (showLoader) => {
+  return await apiRequest(
+    () => axiosInstance.put(`/api/users/score`),
+    showLoader
+  );
+};
+
 export const changePassword = async (data, showLoader) => {
   return await apiRequest(
     () => axiosInstance.put(`/api/users/change_password`, data),

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Pagination } from 'flowbite-react'
+import { toast } from "react-toastify";
 import { Button, Filters, NoRecords, Sorts } from '@components/common'
 import Layout from '@components/layout'
 import { User, UserModal } from '@components/users'
-import { getAllUsers } from '@services/user'
+import { getAllUsers, syncScores } from '@services/user'
 import { userFilters, userSorts } from '@filters/user'
 
 const Users = () => {
@@ -16,13 +17,23 @@ const Users = () => {
 
     const refresh = () => {
         getAllUsers(filterQuery, sortQuery, page).then((res) => {
-            setUserRes(res.data)
+            if (res.success) {
+                setUserRes(res.data)
+            }
         })
     }
 
     useEffect(() => {
         refresh()
     }, [page, filterQuery, sortQuery])
+
+    const onSyncClick = () => {
+        syncScores().then((res) => {
+            if (res.success) {
+                toast.success('User scores synced successfully')
+            }
+        })
+    }
 
     return (
         <Layout title="Bashaway | Users">
@@ -35,6 +46,12 @@ const Users = () => {
                                 <Sorts sorts={userSorts} setSortQuery={setSortQuery} />
                             </div>
                             <div className='w-10/12 flex justify-end items-center mb-6'>
+                                <Button
+                                    className="px-12 py-2 mr-4 font-semibold md:text-xl focus:outline-none focus:ring focus:ring-offset-1 bg-white focus:ring-black focus:ring-opacity-10"
+                                    onClick={onSyncClick}
+                                >
+                                    Sync Scores
+                                </Button>
                                 <Button
                                     className="px-12 py-2 font-semibold md:text-xl focus:outline-none focus:ring focus:ring-offset-1 bg-white focus:ring-black focus:ring-opacity-10"
                                     onClick={() => {
@@ -50,7 +67,7 @@ const Users = () => {
                                         userRes.docs?.map((user) => {
                                             return (
                                                 <div key={`user-list-${user._id}`} className="w-full flex justify-center items-center">
-                                                    <User user={user} refresh={refresh}/>
+                                                    <User user={user} refresh={refresh} />
                                                 </div>
                                             )
                                         })
@@ -73,7 +90,7 @@ const Users = () => {
                     )
                 }
             </div>
-            <UserModal show={showUserModal} setShow={setShowUserModal} refresh={refresh}/>
+            <UserModal show={showUserModal} setShow={setShowUserModal} refresh={refresh} />
         </Layout>
     )
 }

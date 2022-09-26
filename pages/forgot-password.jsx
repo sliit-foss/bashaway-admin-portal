@@ -11,16 +11,18 @@ const ForgotPassword = () => {
     e.preventDefault();
     await forgotPassword({
       email: e.target.email.value,
-    }).then(() => {
-      toast.success(
-        "An email has been sent with a link to reset your password!",
-        {
-          autoClose: 3500,
-        }
-      );
-      setTimeout(() => {
-        router.push("/");
-      }, 3500);
+    }).then((res) => {
+      if (res.success) {
+        toast.success(
+          "An email has been sent with a link to reset your password!",
+          {
+            autoClose: 3500,
+          }
+        );
+        setTimeout(() => {
+          router.push("/");
+        }, 3500);
+      }
     });
   };
 
