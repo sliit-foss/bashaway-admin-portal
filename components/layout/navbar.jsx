@@ -17,6 +17,10 @@ const initialNavItems = [
     name: "Questions",
     path: "/questions",
   },
+  {
+    name: "Users",
+    path: "/users",
+  },
 ];
 
 const Header = () => {

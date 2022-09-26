@@ -3,8 +3,9 @@ import { useRouter } from "next/router";
 
 const blacklistedPaths = [
   "",
-  "question",
-  "profile",
+  "questions",
+  "profiles",
+  "users",
   "change-password",
   "leaderboard",
 ];

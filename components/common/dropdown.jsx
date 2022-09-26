@@ -71,7 +71,7 @@ const Dropdown = ({ options, onChange, ...props }) => {
       )}
       {selectedOption !== null && selectedOption !== 'undefined' && (
         <div className={`w-fit h-full absolute right-3 top-0 flex justify-center items-center ${props.className.includes('hidden') || props.className.includes('opacity-0') ? 'hidden opacity-0' : ''}`}>
-          <AiOutlineClose className={`w-[1.2rem] h-[1.2rem] ${props.theme === 'light' ? 'text-black' : 'text-gray-100'}text-gray-100 cursor-pointer`} onClick={onSelect} />
+          <AiOutlineClose className={`w-[1.2rem] h-[1.2rem] cursor-pointer fill-current`} onClick={onSelect} style={{color: props.theme === 'light' ? '#000' : '#F0F2F5'}}/>
         </div>
       )}
     </div>

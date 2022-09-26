@@ -7,6 +7,13 @@ export const getAllUsers = async (filterQuery = "", sortQuery = "", page, showLo
   );
 };
 
+export const addUser = async (data, showLoader) => {
+  return await apiRequest(
+    () => axiosInstance.post(`/api/users`, data),
+    showLoader
+  );
+};
+
 export const updateUser = async (id, data, showLoader) => {
   return await apiRequest(
     () => axiosInstance.put(`/api/users/${id}`, data),

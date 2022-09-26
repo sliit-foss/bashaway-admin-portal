@@ -24,7 +24,9 @@ export const apiRequest = async (request, showLoader = true) => {
     }))
     .catch((error) => {
       const message = error.response.data.message;
-      toast.error(message);
+      if (error.response.status === 403 && localStorage.getItem("token")) {
+        toast.error(message);
+      }
       return {
         success: false,
         message: message,

@@ -77,7 +77,7 @@ const Layout = ({ children, title = "Bashaway" }) => {
         <meta name="image" content="/assets/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Race against time with automation" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r119/three.min.js" />
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r119/three.min.js" />
       </Head>
       <motion.main
         className="bg-black font-inter overflow-x-hidden"
