@@ -11,7 +11,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser(state, action) {
-      state.currentUser = Object.keys(action.payload).reduce((acc, curr) => {
+      state.currentUser = Object.keys(action.payload || {}).reduce((acc, curr) => {
         acc[curr] = action.payload[curr] || state[curr];
         return acc;
       }, {});

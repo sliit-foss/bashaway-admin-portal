@@ -27,7 +27,7 @@ const Layout = ({ children, title = "Bashaway" }) => {
   const { currentUser } = useSelector((state) => state.user);
 
   useEffectOnce(() => {
-    isEmpty(currentUser) && getCurrentUser().then((res) => {
+    localStorage.getItem("token") && isEmpty(currentUser) && getCurrentUser().then((res) => {
       dispatch(setCurrentUser(res.data));
     });
   });
