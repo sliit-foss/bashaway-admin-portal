@@ -82,7 +82,7 @@ const Dashboard = () => {
                 </div>
                 <div className='w-11/12 h-1/2 justify-start flex flex-col lg:flex-row p-8 gap-x-12'>
                     <div className='w-full h-1/2'>
-                        {registrationInfo && <Line
+                        {submissionInfo && <Line
 
                             data={{
                                 labels: submissionInfo?.map((obj) => obj.question?.name),
