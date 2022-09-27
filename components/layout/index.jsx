@@ -73,8 +73,8 @@ const Layout = ({ children, title = "Bashaway" }) => {
     <>
       <Head>
         <title>{title}</title>
+        <link rel="shortcut icon" href="/assets/favicon.ico" />
         <meta charset="UTF-8" />
-        <meta name="image" content="/assets/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Race against time with automation" />
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r119/three.min.js" />
