@@ -8,7 +8,7 @@ import { addQuestion, updateQuestion } from '@services/question'
 import { uploadFile } from '@services/azure';
 import { Dropdown, Input } from '@components/common';
 import { enabledFilters, questionFilters } from '@filters';
-import { pick } from 'lodash';
+import { isEmpty, pick } from 'lodash';
 import 'react-markdown-editor-lite/lib/index.css';
 
 const mdParser = new MarkdownIt();
@@ -72,17 +72,19 @@ const QuestionModal = ({ question, show, setShow, refresh = () => { } }) => {
     }
 
     const onFileChange = (e) => {
-        uploadFile(formData.name, e.target.files[0])
-            .then((res) => {
-                setFormData({
-                    ...formData,
-                    codebase_url: res
+        if (!isEmpty(e.target.files)) {
+            uploadFile(formData.name, e.target.files[0])
+                .then((res) => {
+                    setFormData({
+                        ...formData,
+                        codebase_url: res
+                    })
                 })
-            })
-            .catch((e) => {
-                console.error(`Error during file upload - message: `, e.message)
-                toast.error('Error during file upload')
-            })
+                .catch((e) => {
+                    console.error(`Error during file upload - message: `, e.message)
+                    toast.error('Error during file upload')
+                })
+        }
     }
 
     return (
