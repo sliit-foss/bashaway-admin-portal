@@ -32,7 +32,6 @@ const Submissions = () => {
     open: false,
     submission: null,
   })
-  const [selectedSubmission, setSelectedSubmission] = useState(null)
 
   const refresh = () => {
     getAllSubmissions(`${filterQuery}filter[question]=${questionId}`, sortQuery, page).then((res) => {
