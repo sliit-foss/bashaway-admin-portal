@@ -31,6 +31,7 @@ const Users = () => {
         syncScores().then((res) => {
             if (res.success) {
                 toast.success('User scores synced successfully')
+                refresh()
             }
         })
     }
