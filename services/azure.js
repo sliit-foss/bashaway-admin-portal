@@ -1,11 +1,10 @@
-import { BlobServiceClient } from "@azure/storage-blob";
+import { BlobServiceClient } from '@azure/storage-blob'
 
-const blobServiceClient = new BlobServiceClient(
-  import.meta.env.VITE_BLOB_SAS_URL
-);
-const containerClient = blobServiceClient.getContainerClient("bashaway-prod");
+const blobServiceClient = new BlobServiceClient(`https://${process.env.NEXT_PUBLIC_STORAGE_ACCOUNT}.blob.core.windows.net${process.env.NEXT_PUBLIC_SAS_TOKEN}`)
+const containerClient = blobServiceClient.getContainerClient(`questions-${process.env.NEXT_PUBLIC_APP_ENV}`)
 
-export const uploadFile = async (file) => {
-  const blockBlobClient = containerClient.getBlockBlobClient(file.name);
-  return blockBlobClient.uploadBrowserData(file);
-};
+export const uploadFile = async (questionName, file) => {
+  const blockBlobClient = containerClient.getBlockBlobClient(`${questionName}/${file.name}`)
+  await blockBlobClient.uploadBrowserData(file)
+  return blockBlobClient.url
+}

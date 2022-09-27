@@ -13,7 +13,6 @@ const GradeModal = ({ submission, show, setShow, refresh = () => { } }) => {
     const [formData, setFormData] = useState(submission || initialFormData)
 
     const onSubmit = async () => {
-        console.log(formData)
         await gradeSubmission(submission._id, {
             score: Number(formData.score),
         }).then((res) => {
