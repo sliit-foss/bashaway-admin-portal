@@ -116,7 +116,6 @@ const Dashboard = () => {
                                         }
                                     },
                                     y: {
-
                                         grid: {
                                             color: "#ffffff10",
                                             lineWidth: 1,
