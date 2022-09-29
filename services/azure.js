@@ -4,7 +4,7 @@ const blobServiceClient = new BlobServiceClient(`https://${process.env.NEXT_PUBL
 const containerClient = blobServiceClient.getContainerClient(`questions-${process.env.NEXT_PUBLIC_APP_ENV}`)
 
 export const uploadFile = async (questionName, file) => {
-  const blockBlobClient = containerClient.getBlockBlobClient(`${questionName}/${file.name}`)
+  const blockBlobClient = containerClient.getBlockBlobClient(`${questionName}/${Date.now().toLocaleString()}/${file.name}`)
   await blockBlobClient.uploadBrowserData(file)
   return blockBlobClient.url
 }
