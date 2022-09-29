@@ -53,8 +53,8 @@ const UserModal = ({ user, show, setShow, refresh = () => { } }) => {
             <Modal.Body>
                 <form>
                     <div className="flex flex-col gap-y-4 mb-4">
-                        <Input placeholder="User Name" name="name" value={formData.name} className="h-12 sm:h-14 light" theme="light" onChange={onChange} />
-                        {!user && <Input placeholder="Email" name="email" value={formData.email} className="h-12 sm:h-14 light" theme="light" onChange={onChange} />}
+                        <Input placeholder="User Name" name="name" value={formData.name} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />
+                        {!user && <Input placeholder="Email" name="email" value={formData.email} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />}
                     </div>
                 </form>
             </Modal.Body>
