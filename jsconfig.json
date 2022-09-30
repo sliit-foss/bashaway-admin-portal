@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@config/*": ["config/*"],
+      "@config": ["config"],
+      "@components/*": ["components/*"],
+      "@components": ["components"],
+      "@filters/*": ["filters/*"],
+      "@filters": ["filters"],
+      "@hooks/*": ["hooks/*"],
+      "@hooks": ["hooks"],
+      "@services/*": ["services/*"],
+      "@services": ["services"],
+      "@store/*": ["store/*"],
+      "@store": ["store"],
+    }
+  }
+}
