@@ -12,7 +12,7 @@ const Question = ({ question }) => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 text-xs text ml-6 mt-4 text-gray-400">
           <p>Complexity - {question.difficulty}</p>
           <p>Maximum Score - {question.max_score}</p>
-          <p>Total Submissions - {question.total_submissions}</p>
+          <p>Teams Submitted - {question.total_submissions}</p>
           <p>Constraints - {question.constraints?.join(',')}</p>
         </div>
       </div>
