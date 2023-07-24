@@ -1,25 +1,25 @@
 export const submissionFilters = [
   {
-    key: 'user',
-    label: 'Team Name',
-    options: []
+    key: "user",
+    label: "Team Name",
+    options: [],
   },
-]
+];
 
 export const submissionSorts = [
   {
-    key: 'created_at',
-    label: 'Sort by submission time',
+    key: "created_at",
+    label: "Sort by submission time",
     direction: 0,
   },
   {
-    key: 'updated_at',
-    label: 'Sort by graded time',
+    key: "updated_at",
+    label: "Sort by graded time",
     direction: 0,
   },
   {
-    key: 'score',
-    label: 'Sort by score',
+    key: "score",
+    label: "Sort by score",
     direction: 0,
   },
-]
+];

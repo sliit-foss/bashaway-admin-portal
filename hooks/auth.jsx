@@ -15,7 +15,9 @@ const useAuth = () => {
   const router = useRouter();
   useEffect(() => {
     if (
-      (!localStorage.getItem("token") || (localStorage.getItem("token") && decode(localStorage.getItem("token")))?.data?.role === 'GROUP') &&
+      (!localStorage.getItem("token") ||
+        (localStorage.getItem("token") && decode(localStorage.getItem("token")))
+          ?.data?.role === "GROUP") &&
       blacklistedPaths.includes(window.location.pathname.split("/")[1])
     ) {
       localStorage.clear();

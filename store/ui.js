@@ -3,7 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   showLoader: false,
-  backgroundAnimation: process.browser ? 'backgroundAnimation' in window.localStorage ? window.localStorage.getItem('backgroundAnimation') === 'true' : true : true,
+  backgroundAnimation: process.browser
+    ? "backgroundAnimation" in window.localStorage
+      ? window.localStorage.getItem("backgroundAnimation") === "true"
+      : true
+    : true,
 };
 
 export const uiSlice = createSlice({
@@ -14,7 +18,7 @@ export const uiSlice = createSlice({
       state.showLoader = action.payload;
     },
     toggleBackgroundAnimation(state, action) {
-      state.backgroundAnimation = action.payload
+      state.backgroundAnimation = action.payload;
     },
   },
 });

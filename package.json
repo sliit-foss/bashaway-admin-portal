@@ -5,13 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "lint": "eslint --ext .js,.jsx,.tsx --ignore-path .gitignore --fix . && prettier .  --write"
+    "lint": "eslint --ext .js,.jsx,.tsx --ignore-path .gitignore --cache --fix . && prettier .  --write --cache"
   },
   "dependencies": {
     "@azure/storage-blob": "^12.11.0",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
-    "chart.js":"^3.9.1",
+    "chart.js": "^3.9.1",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.11",
     "framer-motion": "^7.3.4",

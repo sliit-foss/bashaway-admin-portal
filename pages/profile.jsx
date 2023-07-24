@@ -20,9 +20,10 @@ const Register = () => {
   const [formData, setFormData] = useState(user);
 
   useEffectOnce(() => {
-    isEmpty(user) && getCurrentUser().then((res) => {
-      dispatch(setCurrentUser(res.data));
-    });
+    isEmpty(user) &&
+      getCurrentUser().then((res) => {
+        dispatch(setCurrentUser(res.data));
+      });
   });
 
   useEffect(() => {
@@ -63,10 +64,17 @@ const Register = () => {
             }}
           />
           <div className="w-full flex justify-center items-center">
-            <Button className="h-14 w-1/2 mb-8 mr-2" onClick={() => {
-              router.push("/change-password");
-            }}>Change Password</Button>
-            <Button className="h-14 w-1/2 mb-8 ml-2" type="submit">Update Name</Button>
+            <Button
+              className="h-14 w-1/2 mb-8 mr-2"
+              onClick={() => {
+                router.push("/change-password");
+              }}
+            >
+              Change Password
+            </Button>
+            <Button className="h-14 w-1/2 mb-8 ml-2" type="submit">
+              Update Name
+            </Button>
           </div>
         </div>
       </form>

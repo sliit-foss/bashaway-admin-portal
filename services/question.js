@@ -1,17 +1,37 @@
-import { axiosInstance, apiRequest } from './core/axios'
+import { axiosInstance, apiRequest } from "./core/axios";
 
 export const addQuestion = async (data, showLoader) => {
-  return await apiRequest(() => axiosInstance.post(`/api/questions`, data), showLoader)
-}
+  return await apiRequest(
+    () => axiosInstance.post(`/api/questions`, data),
+    showLoader
+  );
+};
 
 export const updateQuestion = async (id, data, showLoader) => {
-  return await apiRequest(() => axiosInstance.put(`/api/questions/${id}`, data), showLoader)
-}
+  return await apiRequest(
+    () => axiosInstance.put(`/api/questions/${id}`, data),
+    showLoader
+  );
+};
 
-export const getAllQuestions = async (filterQuery = "", sortQuery = "", page, showLoader) => {
-  return await apiRequest(() => axiosInstance.get(`/api/questions?${filterQuery}&${sortQuery}&page=${page}&limit=5`), showLoader)
-}
+export const getAllQuestions = async (
+  filterQuery = "",
+  sortQuery = "",
+  page,
+  showLoader
+) => {
+  return await apiRequest(
+    () =>
+      axiosInstance.get(
+        `/api/questions?${filterQuery}&${sortQuery}&page=${page}&limit=5`
+      ),
+    showLoader
+  );
+};
 
 export const getQuestionById = async (id, showLoader) => {
-  return await apiRequest(() => axiosInstance.get(`/api/questions/${id}`), showLoader)
-}
+  return await apiRequest(
+    () => axiosInstance.get(`/api/questions/${id}`),
+    showLoader
+  );
+};

@@ -1,12 +1,12 @@
 import { HiOutlineMenu } from "react-icons/hi";
 import { IoIosClose } from "react-icons/io";
-import { MdAnimation } from 'react-icons/md'
+import { MdAnimation } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Tooltip } from "flowbite-react";
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/router";
-import { toggleBackgroundAnimation } from '@store/ui'
+import { toggleBackgroundAnimation } from "@store/ui";
 
 const initialNavItems = [
   {
@@ -90,8 +90,14 @@ const Header = () => {
           })}
           <AnimationToggle />
         </div>
-        <AnimationToggle wrapperclasses="fixed top-4 right-16 lg:hidden" classes="h-[1.85rem] w-[1.85rem] text-white hover:text-primary" />
-        <HiOutlineMenu className="fixed top-0 h-8 w-8 text-white right-1 lg:hidden mt-4 lg:mt-4 mr-4 lg:mr-2 cursor-pointer" onClick={burgerNavController} />
+        <AnimationToggle
+          wrapperclasses="fixed top-4 right-16 lg:hidden"
+          classes="h-[1.85rem] w-[1.85rem] text-white hover:text-primary"
+        />
+        <HiOutlineMenu
+          className="fixed top-0 h-8 w-8 text-white right-1 lg:hidden mt-4 lg:mt-4 mr-4 lg:mr-2 cursor-pointer"
+          onClick={burgerNavController}
+        />
       </div>
       <div>
         <nav
@@ -139,25 +145,37 @@ const Header = () => {
   );
 };
 
-const AnimationToggle = ({ wrapperclasses = '', classes = '' }) => {
-  const dispatch = useDispatch()
-  const { backgroundAnimation } = useSelector((state) => state.ui)
+const AnimationToggle = ({ wrapperclasses = "", classes = "" }) => {
+  const dispatch = useDispatch();
+  const { backgroundAnimation } = useSelector((state) => state.ui);
 
   return (
     <div className={wrapperclasses}>
-      <Tooltip content={backgroundAnimation ? 'Disable animation' : 'Enable animation'}>
+      <Tooltip
+        content={backgroundAnimation ? "Disable animation" : "Enable animation"}
+      >
         <MdAnimation
-          className={twMerge(`w-6 h-6 ml-5 cursor-pointer transition duration-300 ${backgroundAnimation ? 'text-primary hover:text-white' : 'text-white hover:text-primary'}`, classes)}
+          className={twMerge(
+            `w-6 h-6 ml-5 cursor-pointer transition duration-300 ${
+              backgroundAnimation
+                ? "text-primary hover:text-white"
+                : "text-white hover:text-primary"
+            }`,
+            classes
+          )}
           onClick={() => {
-            dispatch(toggleBackgroundAnimation(!backgroundAnimation))
+            dispatch(toggleBackgroundAnimation(!backgroundAnimation));
             if (process.browser) {
-              window.localStorage.setItem('backgroundAnimation', !backgroundAnimation)
+              window.localStorage.setItem(
+                "backgroundAnimation",
+                !backgroundAnimation
+              );
             }
           }}
         />
       </Tooltip>
     </div>
-  )
-}
+  );
+};
 
 export default Header;
