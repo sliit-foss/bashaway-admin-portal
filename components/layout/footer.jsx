@@ -167,7 +167,7 @@ const Footer = () => {
             sllitfoss.org
           </a>
         </div>
-        <div className="flex flex-col items-center justify-end w-full mt-6 md:justify-start  md:pr-0 ">
+        <div className="flex flex-col items-center justify-end w-full mt-10 md:mt-6 mb-12 md:justify-start md:pr-0 ">
           <h1 className="mb-6 text-2xl font-semibold text-white">
             Useful Links
           </h1>
@@ -189,9 +189,9 @@ const Footer = () => {
         </div>
       </div>
       <Divider />
-      <div className="flex flex-col justify-start px-10 pt-5 pb-6 bg-black md:flex-row md:justify-between text-nav-links-unselected md:px-24">
-        <span className="text-center md:text-left">
-          Copyright © 2022 SLIIT FOSS Community
+      <div className="flex flex-col justify-start px-10 pt-5 pb-6 md:flex-row md:justify-between text-nav-links-unselected md:px-24 relative z-50">
+        <span className="text-center md:text-left text-white">
+          Copyright © {new Date().getFullYear()} SLIIT FOSS Community
         </span>
         <div className="flex items-center justify-center mt-4 md:justify-start md:mt-0">
           <span className="mr-3 md:mr-8">Visit us On</span>

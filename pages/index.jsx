@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   return (
     <Layout title="Bashaway | Dashboard">
-      <div className="w-screen min-h-screen flex flex-col justify-start items-center pt-20">
+      <div className="w-screen min-h-screen flex flex-col justify-center items-center pt-20">
         <div className="w-11/12 h-1/2 justify-start flex flex-col lg:flex-row p-8 gap-x-12">
           <Link href="/users">
             <div className="flex flex-col justify-center items-center bg-white/5 hover:bg-transparent border-transparent hover:border hover:border-white/10 backdrop-blur-sm p-12 mb-12 lg:mb-0 rounded-lg transition duration-300 cursor-pointer">
@@ -80,10 +80,11 @@ const Dashboard = () => {
                       data: registrationInfo?.university_counts?.map(
                         (obj) => obj.count
                       ),
+                      borderRadius: 5,
                     },
                   ],
                 }}
-                height={250}
+                height={240}
                 options={{ maintainAspectRatio: false }}
               />
             )}
@@ -91,11 +92,11 @@ const Dashboard = () => {
         </div>
         <div className="w-11/12 h-1/2 justify-end flex flex-col lg:flex-row px-8 gap-x-12">
           <span className="text-white text-2xl">
-            Total Submissions:{" "}
-            {submissionInfo?.reduce(
+            Cumulative Distinct Submissions:{" "}
+            <span className="text-primary">{submissionInfo?.reduce(
               (acc, curr) => acc + curr.submission_count,
               0
-            )}
+            )}</span>
           </span>
         </div>
         <div className="w-11/12 h-1/2 justify-start flex flex-col lg:flex-row p-8 gap-x-12">
@@ -123,14 +124,7 @@ const Dashboard = () => {
                   },
                   scales: {
                     x: {
-                      ticks: {
-                        maxRotation: 90,
-                        minRotation: 20,
-                      },
-                      grid: {
-                        color: "#ffffff10",
-                        lineWidth: 1,
-                      },
+                      display: false,
                     },
                     y: {
                       grid: {
