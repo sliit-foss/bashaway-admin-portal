@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { Pagination } from "flowbite-react";
+import { useDispatch, useSelector } from "react-redux";
+import { isEmpty } from "lodash";
+import { Button, Filters, NoRecords, Sorts } from "@components/common";
 import Layout from "@components/layout";
-import { Button, Filters, Sorts, NoRecords } from "@components/common";
 import { GradeModal, Submission } from "@components/submissions";
-import { getAllSubmissions } from "@services/submission";
 import { submissionFilters, submissionSorts } from "@filters";
 import { useEffectOnce } from "@hooks/index";
+import { getAllSubmissions } from "@services/submission";
 import { getAllUsers } from "@services/user";
 import { setCompetitors } from "@store/user";
-import { isEmpty } from "lodash";
 import { downloadFile } from "helpers";
 
 const Submissions = () => {
@@ -29,15 +29,11 @@ const Submissions = () => {
 
   const [gradeModalParams, setGradeModalParams] = useState({
     open: false,
-    submission: null,
+    submission: null
   });
 
   const refresh = () => {
-    getAllSubmissions(
-      `${filterQuery}filter[question]=${questionId}`,
-      sortQuery,
-      page
-    ).then((res) => {
+    getAllSubmissions(`${filterQuery}filter[question]=${questionId}`, sortQuery, page).then((res) => {
       setSubmissionRes(res.data);
     });
   };
@@ -64,7 +60,7 @@ const Submissions = () => {
                   if (filter.key == "user")
                     filter.options = competitors?.map((competitor) => ({
                       key: competitor._id,
-                      label: competitor.name,
+                      label: competitor.name
                     }));
                   return filter;
                 })}
@@ -76,12 +72,8 @@ const Submissions = () => {
               <Button
                 className="px-12 py-2 font-semibold md:text-xl focus:outline-none focus:ring focus:ring-offset-1 bg-white focus:ring-black focus:ring-opacity-10"
                 onClick={() => {
-                  getAllSubmissions(
-                    `${filterQuery}filter[question]=${questionId}`
-                  ).then((res) => {
-                    res.data.forEach((submission) =>
-                      downloadFile(submission.link)
-                    );
+                  getAllSubmissions(`${filterQuery}filter[question]=${questionId}`).then((res) => {
+                    res.data.forEach((submission) => downloadFile(submission.link));
                   });
                 }}
               >
@@ -99,7 +91,7 @@ const Submissions = () => {
                         onGrade={() => {
                           setGradeModalParams({
                             open: true,
-                            submission,
+                            submission
                           });
                         }}
                       />
@@ -129,7 +121,7 @@ const Submissions = () => {
         setShow={(open) => {
           setGradeModalParams({
             ...gradeModalParams,
-            open,
+            open
           });
         }}
         refresh={refresh}

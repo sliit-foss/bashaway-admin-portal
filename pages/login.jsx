@@ -1,10 +1,11 @@
-import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { login } from "@services/auth";
 import { Button, Input } from "@components/common";
 import Layout from "@components/layout";
+import { useEffectOnce } from "@hooks/index";
+import { login } from "@services/auth";
 import { setCurrentUser } from "@store/user";
 
 const Login = () => {
@@ -16,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     await login({
       email: e.target.email.value,
-      password: e.target.password.value,
+      password: e.target.password.value
     }).then((res) => {
       if (res.success) {
         if (res.data.user.role === "ADMIN") {
@@ -30,6 +31,12 @@ const Login = () => {
     });
   };
 
+  useEffectOnce(() => {
+    if (localStorage.getItem("token")) {
+      router.push("/");
+    }
+  });
+
   return (
     <Layout title="Login | Bashaway">
       <div className="w-full min-h-screen flex flex-col justify-center items-center px-6 sm:px-16">
@@ -40,28 +47,14 @@ const Login = () => {
           <div className="flex flex-col w-full md:w-1/2 mr-0 md:mr-6">
             <div>
               <form className="flex flex-col items-end" onSubmit={handleLogin}>
-                <Input
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  className="p-4"
-                  required
-                />
-                <Input
-                  placeholder="Password"
-                  type="password"
-                  name="password"
-                  className="my-8 p-3"
-                  required
-                />
+                <Input placeholder="Email" type="email" name="email" className="p-4" required />
+                <Input placeholder="Password" type="password" name="password" className="my-8 p-3" required />
                 <Link href="/forgot-password">
                   <span className="text-white font-bold text-sm sm:text-base mt-4 cursor-pointer">
                     Forgot Password?
                   </span>
                 </Link>
-                <Button className="w-[130px] h-11 sm:w-[165px] mt-10">
-                  Login
-                </Button>
+                <Button className="w-[130px] h-11 sm:w-[165px] mt-10">Login</Button>
               </form>
             </div>
           </div>

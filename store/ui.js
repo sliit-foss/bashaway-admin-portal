@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+ 
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -7,7 +7,7 @@ const initialState = {
     ? "backgroundAnimation" in window.localStorage
       ? window.localStorage.getItem("backgroundAnimation") === "true"
       : true
-    : true,
+    : true
 };
 
 export const uiSlice = createSlice({
@@ -19,8 +19,8 @@ export const uiSlice = createSlice({
     },
     toggleBackgroundAnimation(state, action) {
       state.backgroundAnimation = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const { toggleLoader, toggleBackgroundAnimation } = uiSlice.actions;

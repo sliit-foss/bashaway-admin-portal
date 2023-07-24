@@ -7,8 +7,8 @@ export function makeStore() {
     devTools: true,
     reducer: {
       ui: uiSlice,
-      user: userSlice,
-    },
+      user: userSlice
+    }
   });
 }
 

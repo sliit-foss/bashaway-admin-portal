@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Modal, Button } from "flowbite-react";
+import { Button, Modal } from "flowbite-react";
 import { toast } from "react-toastify";
 import { Input } from "@components/common";
 import { addUser, updateUser } from "@services/user";
 
 const initialFormData = {
   name: "",
-  email: "",
+  email: ""
 };
 
 const UserModal = ({ user, show, setShow, refresh = () => {} }) => {
@@ -15,7 +15,7 @@ const UserModal = ({ user, show, setShow, refresh = () => {} }) => {
   const onSubmit = async () => {
     if (user) {
       await updateUser(user._id, {
-        name: formData.name,
+        name: formData.name
       }).then((res) => {
         if (res.success) {
           toast.success("User updated successfully");
@@ -36,7 +36,7 @@ const UserModal = ({ user, show, setShow, refresh = () => {} }) => {
   const onChange = (e, key) => {
     setFormData({
       ...formData,
-      [key || e.target.name]: e.target.value,
+      [key || e.target.name]: e.target.value
     });
   };
 

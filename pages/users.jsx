@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { Button, Filters, NoRecords, Sorts } from "@components/common";
 import Layout from "@components/layout";
 import { User, UserModal } from "@components/users";
-import { getAllUsers, syncScores } from "@services/user";
 import { userFilters, userSorts } from "@filters/user";
+import { getAllUsers, syncScores } from "@services/user";
 
 const Users = () => {
   const [userRes, setUserRes] = useState(null);
@@ -66,10 +66,7 @@ const Users = () => {
                 {userRes.docs?.length > 0 ? (
                   userRes.docs?.map((user) => {
                     return (
-                      <div
-                        key={`user-list-${user._id}`}
-                        className="w-full flex justify-center items-center"
-                      >
+                      <div key={`user-list-${user._id}`} className="w-full flex justify-center items-center">
                         <User user={user} refresh={refresh} />
                       </div>
                     );
@@ -92,11 +89,7 @@ const Users = () => {
           </>
         )}
       </div>
-      <UserModal
-        show={showUserModal}
-        setShow={setShowUserModal}
-        refresh={refresh}
-      />
+      <UserModal show={showUserModal} setShow={setShowUserModal} refresh={refresh} />
     </Layout>
   );
 };

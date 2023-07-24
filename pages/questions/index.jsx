@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Pagination } from "flowbite-react";
 import { Button, Filters, NoRecords, Sorts } from "@components/common";
-import { Question, QuestionModal } from "@components/questions";
 import Layout from "@components/layout";
-import { getAllQuestions } from "@services/question";
+import { Question, QuestionModal } from "@components/questions";
 import { questionFilters, questionSorts } from "@filters/question";
+import { getAllQuestions } from "@services/question";
 
 const Questions = () => {
   const [questionRes, setQuestionRes] = useState(null);
@@ -30,10 +30,7 @@ const Questions = () => {
         {questionRes && (
           <>
             <div className="w-10/12 flex flex-col justify-center items-start mt-24 mb-5">
-              <Filters
-                filters={questionFilters}
-                setFilterQuery={setFilterQuery}
-              />
+              <Filters filters={questionFilters} setFilterQuery={setFilterQuery} />
               <Sorts sorts={questionSorts} setSortQuery={setSortQuery} />
             </div>
             <div className="w-10/12 flex justify-end items-center mb-6">
@@ -51,10 +48,7 @@ const Questions = () => {
                 {questionRes.docs?.length > 0 ? (
                   questionRes.docs?.map((question) => {
                     return (
-                      <div
-                        key={`question-list-${question._id}`}
-                        className="w-full flex justify-center items-center"
-                      >
+                      <div key={`question-list-${question._id}`} className="w-full flex justify-center items-center">
                         <Question question={question} />
                       </div>
                     );
@@ -77,11 +71,7 @@ const Questions = () => {
           </>
         )}
       </div>
-      <QuestionModal
-        show={showQuestionModal}
-        setShow={setShowQuestionModal}
-        refresh={refresh}
-      />
+      <QuestionModal show={showQuestionModal} setShow={setShowQuestionModal} refresh={refresh} />
     </Layout>
   );
 };

@@ -12,29 +12,21 @@ const Submission = ({ submission, onGrade }) => {
             <IoStar className="text-white" />
             <h3 className="ml-2 text-md md:text-lg text-white">
               Submitted At --&gt;{" "}
-              <span className="text-primary">
-                {moment(submission.created_at).format("hh:mm:ss:A")}
-              </span>
+              <span className="text-primary">{moment(submission.created_at).format("hh:mm:ss:A")}</span>
             </h3>
           </div>
           <div className="flex flex-row gap-x-6 gap-y-2 flex-wrap  text-sm text ml-6 mt-4 text-gray-400">
             <p className="w-full lg:w-3/12 2xl:w-1/4">
-              Team Name -{" "}
-              <span className="text-primary">{submission.user?.name}</span>
+              Team Name - <span className="text-primary">{submission.user?.name}</span>
             </p>
             <p className="w-full lg:w-3/12 2xl:w-2/12">
-              Max Score -{" "}
-              <span className="text-primary">
-                {submission.question.max_score}
-              </span>
+              Max Score - <span className="text-primary">{submission.question.max_score}</span>
             </p>
             <p className="w-full lg:w-2/12 flex">
               Marked - &nbsp;
               {submission.graded_by ? (
                 <Tooltip
-                  content={`By ${submission.graded_by?.name} at ${moment(
-                    submission.updated_at
-                  ).format("hh:mm:ss:A")}`}
+                  content={`By ${submission.graded_by?.name} at ${moment(submission.updated_at).format("hh:mm:ss:A")}`}
                 >
                   <span className="text-primary cursor-pointer">Yes</span>
                 </Tooltip>

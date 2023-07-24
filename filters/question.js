@@ -1,7 +1,7 @@
 export const questionFilters = [
   {
     key: "name",
-    label: "Name",
+    label: "Name"
   },
   {
     key: "difficulty",
@@ -9,33 +9,33 @@ export const questionFilters = [
     options: [
       {
         key: "EASY",
-        label: "Easy",
+        label: "Easy"
       },
       {
         key: "MEDIUM",
-        label: "Medium",
+        label: "Medium"
       },
       {
         key: "HARD",
-        label: "Hard",
+        label: "Hard"
       },
       {
         key: "EXTREME",
-        label: "Extreme",
-      },
-    ],
-  },
+        label: "Extreme"
+      }
+    ]
+  }
 ];
 
 export const questionSorts = [
   {
     key: "max_score",
     label: "Sort by maximum score",
-    direction: 0,
+    direction: 0
   },
   {
     key: "created_at",
     label: "Sort by created time",
-    direction: 0,
-  },
+    direction: 0
+  }
 ];

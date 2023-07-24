@@ -1,17 +1,17 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { motion } from "framer-motion";
 import { ToastContainer } from "react-toastify";
+import { motion } from "framer-motion";
 import { isEmpty } from "lodash";
 import { useEffectOnce } from "@hooks/index";
 import { getCurrentUser } from "@services/auth";
 import { setCurrentUser } from "@store/user";
+import FOG from "vanta/dist/vanta.fog.min";
 import { Loader } from "../common";
 import Footer from "./footer";
 import Navbar from "./navbar";
-import FOG from "vanta/dist/vanta.fog.min";
 
 const Layout = ({ children, title = "Bashaway" }) => {
   const router = useRouter();
@@ -59,7 +59,7 @@ const Layout = ({ children, title = "Bashaway" }) => {
             midtoneColor: 0xc0c0c,
             lowlightColor: 0x414141,
             baseColor: 0x90909,
-            blurFactor: 0.37,
+            blurFactor: 0.37
           })
         );
       }
@@ -82,26 +82,22 @@ const Layout = ({ children, title = "Bashaway" }) => {
         <meta name="description" content="Race against time with automation" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" />
       </Head>
+      <Navbar />
       <motion.main
-        className="bg-black font-inter overflow-x-hidden"
+        className="bg-black font-inter overflow-x-hidden relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { duration: 0.3 } }}
         transition={{ duration: 0.3 }}
       >
-        <Navbar />
         <div className="w-screen min-h-screen relative z-[5]">{children}</div>
-        <Footer />
         <ToastContainer />
         <Loader />
         {backgroundAnimation && (
-          <div
-            id="vanta-placeholder"
-            ref={vantaRef}
-            className="w-full h-full bg-black fixed top-0 right-0"
-          />
+          <div id="vanta-placeholder" ref={vantaRef} className="w-full h-full bg-black fixed top-0 right-0" />
         )}
       </motion.main>
+      <Footer />
     </>
   );
 };

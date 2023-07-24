@@ -1,25 +1,22 @@
-import { useState, useRef } from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend,
-  PointElement,
-  LineElement,
-  Filler,
-} from "chart.js";
-import { Bar, Line } from "react-chartjs-2";
-import Layout from "../components/layout";
-import { useEffectOnce } from "@hooks/index";
-import {
-  getQuestionSubmissions,
-  getRegistrationInfo,
-} from "@services/dashboard";
 import Link from "next/link";
+import { useRef, useState } from "react";
+import { Bar, Line } from "react-chartjs-2";
+import {
+  ArcElement,
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Filler,
+  Legend,
+  LineElement,
+  LinearScale,
+  PointElement,
+  Title,
+  Tooltip
+} from "chart.js";
+import { useEffectOnce } from "@hooks/index";
+import { getQuestionSubmissions, getRegistrationInfo } from "@services/dashboard";
+import Layout from "../components/layout";
 
 ChartJS.register(
   CategoryScale,
@@ -55,12 +52,8 @@ const Dashboard = () => {
         <div className="w-11/12 h-1/2 justify-start flex flex-col lg:flex-row p-8 gap-x-12">
           <Link href="/users">
             <div className="flex flex-col justify-center items-center bg-white/5 hover:bg-transparent border-transparent hover:border hover:border-white/10 backdrop-blur-sm p-12 mb-12 lg:mb-0 rounded-lg transition duration-300 cursor-pointer">
-              <span className="text-white text-5xl font-semibold">
-                {registrationInfo?.total_registrations || 0}
-              </span>
-              <span className="text-white text-2xl text-center">
-                Registered Teams
-              </span>
+              <span className="text-white text-5xl font-semibold">{registrationInfo?.total_registrations || 0}</span>
+              <span className="text-white text-2xl text-center">Registered Teams</span>
             </div>
           </Link>
           <div className="w-full h-1/2">
@@ -68,21 +61,15 @@ const Dashboard = () => {
               <Bar
                 ref={userStatRef}
                 data={{
-                  labels: registrationInfo?.university_counts?.map(
-                    (university) => university.name
-                  ),
+                  labels: registrationInfo?.university_counts?.map((university) => university.name),
                   datasets: [
                     {
                       label: "Registrations Per University",
-                      backgroundColor: registrationInfo?.university_counts?.map(
-                        () => "#fff"
-                      ),
-                      data: registrationInfo?.university_counts?.map(
-                        (obj) => obj.count
-                      ),
-                      borderRadius: 5,
-                    },
-                  ],
+                      backgroundColor: registrationInfo?.university_counts?.map(() => "#fff"),
+                      data: registrationInfo?.university_counts?.map((obj) => obj.count),
+                      borderRadius: 5
+                    }
+                  ]
                 }}
                 height={240}
                 options={{ maintainAspectRatio: false }}
@@ -93,10 +80,9 @@ const Dashboard = () => {
         <div className="w-11/12 h-1/2 justify-end flex flex-col lg:flex-row px-8 gap-x-12">
           <span className="text-white text-2xl">
             Cumulative Distinct Submissions:{" "}
-            <span className="text-primary">{submissionInfo?.reduce(
-              (acc, curr) => acc + curr.submission_count,
-              0
-            )}</span>
+            <span className="text-primary">
+              {submissionInfo?.reduce((acc, curr) => acc + curr.submission_count, 0)}
+            </span>
           </span>
         </div>
         <div className="w-11/12 h-1/2 justify-start flex flex-col lg:flex-row p-8 gap-x-12">
@@ -110,29 +96,29 @@ const Dashboard = () => {
                       label: "Submissions Per Question",
                       backgroundColor: submissionInfo?.map(() => "#fff"),
                       borderColor: submissionInfo?.map(() => "#fff"),
-                      data: submissionInfo?.map((obj) => obj.submission_count),
-                    },
-                  ],
+                      data: submissionInfo?.map((obj) => obj.submission_count)
+                    }
+                  ]
                 }}
                 height={450}
                 options={{
                   maintainAspectRatio: false,
                   plugins: {
                     legend: {
-                      display: false,
-                    },
+                      display: false
+                    }
                   },
                   scales: {
                     x: {
-                      display: false,
+                      display: false
                     },
                     y: {
                       grid: {
                         color: "#ffffff10",
-                        lineWidth: 1,
-                      },
-                    },
-                  },
+                        lineWidth: 1
+                      }
+                    }
+                  }
                 }}
               />
             )}

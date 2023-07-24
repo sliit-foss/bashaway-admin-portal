@@ -1,32 +1,32 @@
 export const enabledFilters = [
   {
     key: true,
-    label: "Enabled",
+    label: "Enabled"
   },
   {
     key: false,
-    label: "Disabled",
-  },
+    label: "Disabled"
+  }
 ];
 
 export const activeFilters = [
   {
     key: "true",
-    label: "Active",
+    label: "Active"
   },
   {
     key: "false",
-    label: "Inactive",
-  },
+    label: "Inactive"
+  }
 ];
 
 export const truthyFilters = [
   {
     key: "true",
-    label: "Yes",
+    label: "Yes"
   },
   {
     key: "false",
-    label: "No",
-  },
+    label: "No"
+  }
 ];

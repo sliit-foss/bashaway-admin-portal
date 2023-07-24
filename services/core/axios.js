@@ -1,13 +1,13 @@
-import axios from "axios";
 import { toast } from "react-toastify";
+import axios from "axios";
 import store from "../../store";
 import { toggleLoader } from "../../store/ui";
 
 export const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASHAWAY_BE_URL,
   headers: {
-    "Content-Type": "application/json",
-  },
+    "Content-Type": "application/json"
+  }
 });
 
 axiosInstance.interceptors.request.use((config) => {
@@ -20,7 +20,7 @@ export const apiRequest = async (request, showLoader = true) => {
   const response = await request()
     .then((res) => ({
       ...res.data,
-      success: true,
+      success: true
     }))
     .catch((error) => {
       const message = error.response.data.message;
@@ -33,7 +33,7 @@ export const apiRequest = async (request, showLoader = true) => {
       }
       return {
         success: false,
-        message: message,
+        message: message
       };
     });
   store.dispatch(toggleLoader(false));

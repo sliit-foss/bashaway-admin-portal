@@ -2,12 +2,7 @@ import { twMerge } from "tailwind-merge";
 
 export const NoRecords = ({ text = "No Records Found", ...props }) => {
   return (
-    <div
-      className={twMerge(
-        `w-full h-full flex justify-center items-center`,
-        props.className
-      )}
-    >
+    <div className={twMerge(`w-full h-full flex justify-center items-center`, props.className)}>
       <span className="text-2xl text-white font-semibold">{text}</span>
     </div>
   );

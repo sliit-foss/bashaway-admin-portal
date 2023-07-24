@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Modal, Button } from "flowbite-react";
+import { Button, Modal } from "flowbite-react";
 import { toast } from "react-toastify";
 import { Input } from "@components/common";
 import { gradeSubmission } from "@services/submission";
 
 const initialFormData = {
-  score: "",
+  score: ""
 };
 
 const GradeModal = ({ submission, show, setShow, refresh = () => {} }) => {
@@ -13,7 +13,7 @@ const GradeModal = ({ submission, show, setShow, refresh = () => {} }) => {
 
   const onSubmit = async () => {
     await gradeSubmission(submission._id, {
-      score: Number(formData.score),
+      score: Number(formData.score)
     }).then((res) => {
       if (res.success) {
         toast.success("Submission graded successfully");
@@ -27,7 +27,7 @@ const GradeModal = ({ submission, show, setShow, refresh = () => {} }) => {
   const onChange = (e, key) => {
     setFormData({
       ...formData,
-      [key || e.target.name]: e.target.value,
+      [key || e.target.name]: e.target.value
     });
   };
 

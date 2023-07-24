@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { isEmpty } from "lodash";
 import { Button, Input } from "@components/common";
 import Layout from "@components/layout";
+import { useEffectOnce } from "@hooks";
 import { getCurrentUser } from "@services/auth";
 import { updateUser } from "@services/user";
-import { useEffectOnce } from "@hooks";
 import { setCurrentUser } from "@store/user";
 
 const Register = () => {
@@ -33,12 +33,12 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await updateUser(user._id, {
-      name: formData.name,
+      name: formData.name
     }).then((res) => {
       if (res.success) {
         dispatch(setCurrentUser(formData));
         toast.success("User details updated successfully", {
-          autoClose: 3500,
+          autoClose: 3500
         });
       }
     });
@@ -59,7 +59,7 @@ const Register = () => {
             onChange={(e) => {
               setFormData({
                 ...formData,
-                name: e.target.value,
+                name: e.target.value
               });
             }}
           />

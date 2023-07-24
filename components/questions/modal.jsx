@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Modal, Button } from "flowbite-react";
-import { toast } from "react-toastify";
-import MarkdownIt from "markdown-it";
+import { Button, Modal } from "flowbite-react";
 import MdEditor from "react-markdown-editor-lite";
-import { addQuestion, updateQuestion } from "@services/question";
-import { uploadFile } from "@services/azure";
+import "react-markdown-editor-lite/lib/index.css";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { isEmpty, pick } from "lodash";
 import { Dropdown, Input } from "@components/common";
 import { enabledFilters, questionFilters } from "@filters";
-import { isEmpty, pick } from "lodash";
-import "react-markdown-editor-lite/lib/index.css";
+import { uploadFile } from "@services/azure";
+import { addQuestion, updateQuestion } from "@services/question";
+import MarkdownIt from "markdown-it";
 
 const mdParser = new MarkdownIt();
 
@@ -21,7 +21,7 @@ const initialFormData = {
   max_score: null,
   enabled: "",
   creator_lock: "",
-  codebase_url: "",
+  codebase_url: ""
 };
 
 const QuestionModal = ({ question, show, setShow, refresh = () => {} }) => {
@@ -31,7 +31,7 @@ const QuestionModal = ({ question, show, setShow, refresh = () => {} }) => {
     question
       ? {
           ...question,
-          constraints: question.constraints?.join(","),
+          constraints: question.constraints?.join(",")
         }
       : initialFormData
   );
@@ -39,13 +39,10 @@ const QuestionModal = ({ question, show, setShow, refresh = () => {} }) => {
   const onSubmit = async () => {
     const payload = {
       ...formData,
-      constraints: formData.constraints?.split(",")?.map((c) => c.trim()),
+      constraints: formData.constraints?.split(",")?.map((c) => c.trim())
     };
     if (question) {
-      await updateQuestion(
-        question._id,
-        pick(payload, Object.keys(initialFormData))
-      ).then((res) => {
+      await updateQuestion(question._id, pick(payload, Object.keys(initialFormData))).then((res) => {
         if (res.success) {
           toast.success("Question updated successfully");
         }
@@ -66,8 +63,8 @@ const QuestionModal = ({ question, show, setShow, refresh = () => {} }) => {
     onChange(
       {
         target: {
-          value: text,
-        },
+          value: text
+        }
       },
       "description"
     );
@@ -76,7 +73,7 @@ const QuestionModal = ({ question, show, setShow, refresh = () => {} }) => {
   const onChange = (e, key) => {
     setFormData({
       ...formData,
-      [key || e.target.name]: e.target.value,
+      [key || e.target.name]: e.target.value
     });
   };
 
@@ -86,7 +83,7 @@ const QuestionModal = ({ question, show, setShow, refresh = () => {} }) => {
         .then((res) => {
           setFormData({
             ...formData,
-            codebase_url: res,
+            codebase_url: res
           });
         })
         .catch((e) => {
@@ -104,9 +101,7 @@ const QuestionModal = ({ question, show, setShow, refresh = () => {} }) => {
         setShow(false);
       }}
     >
-      <Modal.Header color="white">
-        {question ? "Update" : "Add"} Question
-      </Modal.Header>
+      <Modal.Header color="white">{question ? "Update" : "Add"} Question</Modal.Header>
       <Modal.Body>
         <form>
           <div className="flex flex-col gap-y-4 mb-4">
@@ -129,8 +124,7 @@ const QuestionModal = ({ question, show, setShow, refresh = () => {} }) => {
                 theme="light"
                 disabled={!formData.name}
                 onClick={() => {
-                  formData.name &&
-                    document.getElementById("question-file-upload").click();
+                  formData.name && document.getElementById("question-file-upload").click();
                 }}
                 readOnly
               />
@@ -139,10 +133,7 @@ const QuestionModal = ({ question, show, setShow, refresh = () => {} }) => {
               <Dropdown
                 filterkey="difficulty"
                 placeholder="Select Difficulty"
-                options={
-                  questionFilters.find((filter) => filter.key === "difficulty")
-                    .options
-                }
+                options={questionFilters.find((filter) => filter.key === "difficulty").options}
                 wrapperclasses="w-full md:w-4/12"
                 className="w-full h-12 sm:h-14"
                 theme="light"
@@ -197,12 +188,7 @@ const QuestionModal = ({ question, show, setShow, refresh = () => {} }) => {
               renderHTML={(text) => mdParser.render(text)}
               onChange={handleEditorChange}
             />
-            <input
-              id="question-file-upload"
-              type="file"
-              className="hidden"
-              onChange={onFileChange}
-            />
+            <input id="question-file-upload" type="file" className="hidden" onChange={onFileChange} />
           </div>
         </form>
       </Modal.Body>

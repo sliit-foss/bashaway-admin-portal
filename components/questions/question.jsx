@@ -1,5 +1,5 @@
-import { IoStar } from "react-icons/io5";
 import Link from "next/link";
+import { IoStar } from "react-icons/io5";
 
 const Question = ({ question }) => {
   return (
@@ -7,9 +7,7 @@ const Question = ({ question }) => {
       <div className="md:col-span-3">
         <div className="flex items-center ">
           <IoStar className="text-white" />
-          <h3 className="ml-2 text-md md:text-lg text-white">
-            {question.name}
-          </h3>
+          <h3 className="ml-2 text-md md:text-lg text-white">{question.name}</h3>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 text-xs text ml-6 mt-4 text-gray-400">
           <p>Complexity - {question.difficulty}</p>

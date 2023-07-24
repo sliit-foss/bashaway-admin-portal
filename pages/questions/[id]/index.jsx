@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { IoStar } from "react-icons/io5";
-import ReactMarkdown from "react-markdown";
-import Layout from "@components/layout";
+import { default as ReactMarkdown } from "react-markdown";
 import { Button } from "@components/common";
+import { default as Layout } from "@components/layout";
 import { QuestionModal } from "@components/questions";
 import { getQuestionById } from "@services/question";
 
@@ -40,9 +40,7 @@ export default function QuestionView() {
                 <div className="md:col-span-3">
                   <div className="flex items-center ">
                     <IoStar className="text-white" />
-                    <h3 className="ml-2 text-md md:text-lg text-white">
-                      {question.name}
-                    </h3>
+                    <h3 className="ml-2 text-md md:text-lg text-white">{question.name}</h3>
                   </div>
                   <div className="grid sm:grid-cols-2 2xl:grid-cols-4 text-xs gap-y-6 text ml-6 mt-4 text-gray-400">
                     <p>Complexity - {question.difficulty}</p>
@@ -74,9 +72,7 @@ export default function QuestionView() {
                 </div>
               </div>
               <div className="w-11/12 flex justify-start items-center my-6 pl-6">
-                <ReactMarkdown className="invert markdown">
-                  {question.description}
-                </ReactMarkdown>
+                <ReactMarkdown className="invert markdown">{question.description}</ReactMarkdown>
               </div>
               <div className="w-10/12 flex mt-10 mb-4 ml-6 justify-start items-center">
                 <a href={question.codebase_url} download>

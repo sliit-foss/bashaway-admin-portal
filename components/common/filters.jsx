@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Input, Dropdown } from ".";
+import { useEffect, useState } from "react";
+import { Dropdown, Input } from ".";
 
 const Filters = ({ filters, setFilterQuery }) => {
   const [filtersLocalState, setFiltersLocalState] = useState(filters);
@@ -7,9 +7,7 @@ const Filters = ({ filters, setFilterQuery }) => {
   useEffect(() => {
     const query = filtersLocalState.reduce((acc, curr) => {
       if (curr.value) {
-        acc += `filter[${curr.key}]=${
-          curr.options || curr.directSearch ? curr.value : `/${curr.value}/`
-        }&`;
+        acc += `filter[${curr.key}]=${curr.options || curr.directSearch ? curr.value : `/${curr.value}/`}&`;
       }
       return acc;
     }, "");
@@ -32,9 +30,7 @@ const Filters = ({ filters, setFilterQuery }) => {
       <span className="text-3xl text-white font-semibold">Filters</span>
       <div
         className={`w-full grid ${
-          filters.length > 2
-            ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-            : "grid-cols-1 md:grid-cols-2"
+          filters.length > 2 ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1 md:grid-cols-2"
         } gap-x-6 lg:gap-y-2`}
       >
         {filtersLocalState.map((filter, index) => {
@@ -43,9 +39,7 @@ const Filters = ({ filters, setFilterQuery }) => {
               key={`filter-${filter.key}-${index}`}
               className={`w-full h-full flex flex-col justify-center items-start`}
             >
-              <span className="text-md text-white mt-2 mb-3">
-                {filter.label}
-              </span>
+              <span className="text-md text-white mt-2 mb-3">{filter.label}</span>
               {filter.options ? (
                 <Dropdown
                   filterkey={filter.key}

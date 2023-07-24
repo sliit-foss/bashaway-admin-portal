@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { MdOutlineCircle, MdArrowDropDownCircle } from "react-icons/md";
+import { useEffect, useState } from "react";
+import { MdArrowDropDownCircle, MdOutlineCircle } from "react-icons/md";
 
 const Sorts = ({ sorts, setSortQuery }) => {
   const [sortLocalState, setSortLocalState] = useState(sorts);
@@ -44,9 +44,7 @@ const Sorts = ({ sorts, setSortQuery }) => {
 };
 
 const Sort = ({ sort, onSortChange }) => {
-  const [directionLocalState, setDirectionLocalState] = useState(
-    sort.direction
-  );
+  const [directionLocalState, setDirectionLocalState] = useState(sort.direction);
 
   useEffect(() => {
     onSortChange(sort.key, directionLocalState);
@@ -64,17 +62,12 @@ const Sort = ({ sort, onSortChange }) => {
 
   return (
     <div className="w-full h-full flex justify-start items-center">
-      <div
-        className="text-2xl text-white mr-2 cursor-pointer"
-        onClick={setSortOrder}
-      >
+      <div className="text-2xl text-white mr-2 cursor-pointer" onClick={setSortOrder}>
         {directionLocalState === 0 ? (
           <MdOutlineCircle />
         ) : (
           <MdArrowDropDownCircle
-            className={`text-primary transform ${
-              directionLocalState === 1 ? "" : "rotate-180"
-            }`}
+            className={`text-primary transform ${directionLocalState === 1 ? "" : "rotate-180"}`}
           />
         )}
       </div>

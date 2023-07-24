@@ -3,25 +3,25 @@ import { activeFilters } from "./common";
 export const userFilters = [
   {
     key: "name",
-    label: "Name",
+    label: "Name"
   },
   {
     key: "email",
-    label: "Email",
+    label: "Email"
   },
   {
     key: "university",
-    label: "University",
+    label: "University"
   },
   {
     key: "is_active",
     label: "Status",
-    options: activeFilters,
+    options: activeFilters
   },
   {
     key: "member_count",
     label: "Member Count",
-    directSearch: true,
+    directSearch: true
   },
   {
     key: "role",
@@ -29,25 +29,25 @@ export const userFilters = [
     options: [
       {
         key: "GROUP",
-        label: "Competitor",
+        label: "Competitor"
       },
       {
         key: "ADMIN",
-        label: "Admin",
-      },
-    ],
-  },
+        label: "Admin"
+      }
+    ]
+  }
 ];
 
 export const userSorts = [
   {
     key: "score",
     label: "Sort by score",
-    direction: 0,
+    direction: 0
   },
   {
     key: "created_at",
     label: "Sort by created date",
-    direction: 0,
-  },
+    direction: 0
+  }
 ];
