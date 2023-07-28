@@ -8,6 +8,8 @@
       "@components": ["components"],
       "@filters/*": ["filters/*"],
       "@filters": ["filters"],
+      "@helpers/*": ["helpers/*"],
+      "@helpers": ["helpers"],
       "@hooks/*": ["hooks/*"],
       "@hooks": ["hooks"],
       "@services/*": ["services/*"],
