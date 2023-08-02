@@ -5,7 +5,7 @@ export const addQuestion = async (data, showLoader) => {
 };
 
 export const updateQuestion = async (id, data, showLoader) => {
-  return await apiRequest(() => axiosInstance.put(`/api/questions/${id}`, data), showLoader);
+  return await apiRequest(() => axiosInstance.patch(`/api/questions/${id}`, data), showLoader);
 };
 
 export const getAllQuestions = async (filterQuery = "", sortQuery = "", page, showLoader) => {

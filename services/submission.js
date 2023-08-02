@@ -8,5 +8,5 @@ export const getAllSubmissions = async (filterQuery = "", sortQuery = "", page, 
 };
 
 export const gradeSubmission = async (id, data, showLoader) => {
-  return await apiRequest(() => axiosInstance.put(`/api/submissions/${id}`, data), showLoader);
+  return await apiRequest(() => axiosInstance.patch(`/api/submissions/${id}`, data), showLoader);
 };

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Pagination } from "flowbite-react";
-import { toast } from "react-toastify";
 import { Button, Filters, NoRecords, Sorts } from "@components/common";
-import Layout from "@components/layout";
+import { default as Layout } from "@components/layout";
 import { User, UserModal } from "@components/users";
 import { userFilters, userSorts } from "@filters/user";
-import { getAllUsers, syncScores } from "@services/user";
+import { getAllUsers } from "@services/user";
 
 const Users = () => {
   const [userRes, setUserRes] = useState(null);
@@ -27,15 +26,6 @@ const Users = () => {
     refresh();
   }, [page, filterQuery, sortQuery]);
 
-  const onSyncClick = () => {
-    syncScores().then((res) => {
-      if (res.success) {
-        toast.success("User scores synced successfully");
-        refresh();
-      }
-    });
-  };
-
   return (
     <Layout title="Bashaway | Users">
       <div className="w-screen min-h-screen flex flex-col justify-center items-center">
@@ -46,12 +36,6 @@ const Users = () => {
               <Sorts sorts={userSorts} setSortQuery={setSortQuery} />
             </div>
             <div className="w-10/12 flex justify-end items-center mb-6">
-              <Button
-                className="px-12 py-2 mr-4 font-semibold md:text-xl focus:outline-none focus:ring focus:ring-offset-1 bg-white focus:ring-black focus:ring-opacity-10"
-                onClick={onSyncClick}
-              >
-                Sync Scores
-              </Button>
               <Button
                 className="px-12 py-2 font-semibold md:text-xl focus:outline-none focus:ring focus:ring-offset-1 bg-white focus:ring-black focus:ring-opacity-10"
                 onClick={() => {

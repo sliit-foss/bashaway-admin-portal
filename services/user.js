@@ -12,13 +12,9 @@ export const addUser = async (data, showLoader) => {
 };
 
 export const updateUser = async (id, data, showLoader) => {
-  return await apiRequest(() => axiosInstance.put(`/api/users/${id}`, data), showLoader);
-};
-
-export const syncScores = async (showLoader) => {
-  return await apiRequest(() => axiosInstance.put(`/api/users/score`), showLoader);
+  return await apiRequest(() => axiosInstance.patch(`/api/users/${id}`, data), showLoader);
 };
 
 export const changePassword = async (data, showLoader) => {
-  return await apiRequest(() => axiosInstance.put(`/api/users/change_password`, data), showLoader);
+  return await apiRequest(() => axiosInstance.patch(`/api/users/change_password`, data), showLoader);
 };
