@@ -18,5 +18,5 @@ export const uploadQuestion = async (questionName, file) => {
     .getContainerClient(import.meta.env.VITE_AZURE_STORAGE_CONTAINER)
     .getBlockBlobClient(`${questionName}/${new Date().toISOString()}/${file.name}`);
   await blockBlobClient.uploadBrowserData(file);
-  return blockBlobClient.url;
+  return blockBlobClient.url?.split("?")[0];
 };
