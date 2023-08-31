@@ -22,7 +22,7 @@ export const getRegexPatternFromKey = (key) => {
 };
 
 export const downloadFile = (url) => {
-  fetch(url).then((response) => {
+  fetch(`${url}?${import.meta.env.VITE_AZURE_DOWNLOAD_SAS_TOKEN}`).then((response) => {
     response.blob().then((blob) => {
       const blobUrl = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
