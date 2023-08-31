@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { default as pick } from "lodash/pick";
 import { default as MarkdownIt } from "markdown-it";
 import { enabledFilters, questionFilters } from "@/filters";
-import { uploadFile } from "@/services";
+import { uploadQuestion } from "@/services";
 import { store } from "@/store";
 import { questionApi, useAddQuestionMutation, useAuthUserQuery, useUpdateQuestionMutation } from "@/store/api";
 import { toggleAddQuestionDialog } from "@/store/reducers/ui/question";
@@ -68,7 +68,7 @@ const QuestionDialog = ({ refresh }) => {
       const payload = {
         ...formData,
         constraints: formData.constraints?.split(",")?.map((c) => c.trim()),
-        codebase_url: file ? await uploadFile(file) : formData.codebase_url
+        codebase_url: file ? await uploadQuestion(formData.name, file) : formData.codebase_url
       };
       if (selectedQuestion) {
         await updateQuestion({ id: selectedQuestion._id, data: pick(payload, Object.keys(initialFormData)) })

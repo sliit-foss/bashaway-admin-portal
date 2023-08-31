@@ -1,9 +1,8 @@
 import { store } from "@/store";
 import { storageApi } from "@/store/api";
-import { authUser } from "@/utils";
 import { BlobServiceClient } from "@azure/storage-blob";
 
-export const uploadFile = async (file) => {
+export const uploadQuestion = async (questionName, file) => {
   const signedUrl = (
     await store
       .dispatch(
@@ -17,7 +16,7 @@ export const uploadFile = async (file) => {
   const blobServiceClient = new BlobServiceClient(signedUrl);
   const blockBlobClient = blobServiceClient
     .getContainerClient(import.meta.env.VITE_AZURE_STORAGE_CONTAINER)
-    .getBlockBlobClient(`${authUser()?.name}/${new Date().toISOString()}/${file.name}`);
+    .getBlockBlobClient(`${questionName}/${new Date().toISOString()}/${file.name}`);
   await blockBlobClient.uploadBrowserData(file);
   return blockBlobClient.url;
 };
