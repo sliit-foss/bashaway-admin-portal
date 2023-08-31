@@ -29,11 +29,11 @@ const close = () => store.dispatch(toggleAddQuestionDialog(false));
 const initialFormData = {
   name: "",
   description: "",
-  difficulty: "",
+  difficulty: "EASY",
   constraints: "",
-  max_score: 0,
-  enabled: "",
-  creator_lock: "",
+  max_score: 5,
+  enabled: true,
+  creator_lock: true,
   codebase_url: ""
 };
 
