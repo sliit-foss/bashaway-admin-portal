@@ -7,7 +7,7 @@ export const storageApi = createApi({
   endpoints: (builder) => ({
     signUrl: builder.query({
       query: ({ url, upload = false }) => `/api/storage/sign?url=${encodeURIComponent(url)}&upload=${upload}`
-    }),
+    })
   })
 });
 

@@ -25,7 +25,7 @@ export const getRegexPatternFromKey = (key) => {
 };
 
 export const downloadFile = async (url) => {
-  const signedUrl = (await(store.dispatch(storageApi.endpoints.signUrl.initiate({ url })).unwrap()))?.data?.signed_url;
+  const signedUrl = (await store.dispatch(storageApi.endpoints.signUrl.initiate({ url })).unwrap())?.data?.signed_url;
   fetch(signedUrl).then((response) => {
     response.blob().then((blob) => {
       const blobUrl = window.URL.createObjectURL(blob);
