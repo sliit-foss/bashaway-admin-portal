@@ -1,0 +1,39 @@
+.rc-md-editor {
+    border-radius: 6px;
+}
+
+.rc-md-navigation {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.editor-container {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.sec-md > textarea {
+    border-bottom-left-radius: 6px;
+}
+
+.sec-html, .html-wrap {
+    border-bottom-right-radius: 6px;
+}
+
+.sec-md > textarea:focus {
+    border-bottom-left-radius: 0;
+}
+
+.sec-md > textarea::-webkit-scrollbar, .html-wrap::-webkit-scrollbar {
+  width: 3px;
+}
+
+.sec-md > textarea::-webkit-scrollbar-thumb, .html-wrap::-webkit-scrollbar-thumb {
+  background: #b5bac3;
+}
+
+.sec-md > textarea, .html-wrap {
+  scrollbar-color: black var(--background);
+  scrollbar-width: thin;
+  overflow-x: hidden !important;
+}

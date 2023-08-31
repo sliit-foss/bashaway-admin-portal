@@ -1,0 +1,8 @@
+@import "fonts.css";
+@import "markdown-editor.css";
+@import "@sliit-foss/bashaway-ui/styles";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
