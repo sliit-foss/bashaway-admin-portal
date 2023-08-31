@@ -1,3 +1,6 @@
+import { store } from "@/store";
+import { storageApi } from "@/store/api";
+
 export * from "./colors";
 export * from "./jwt";
 
@@ -21,8 +24,9 @@ export const getRegexPatternFromKey = (key) => {
   return {};
 };
 
-export const downloadFile = (url) => {
-  fetch(`${url}?${import.meta.env.VITE_AZURE_DOWNLOAD_SAS_TOKEN}`).then((response) => {
+export const downloadFile = async (url) => {
+  const signedUrl = (await(store.dispatch(storageApi.endpoints.signUrl.initiate({ url })).unwrap()))?.data?.signed_url;
+  fetch(signedUrl).then((response) => {
     response.blob().then((blob) => {
       const blobUrl = window.URL.createObjectURL(blob);
       const a = document.createElement("a");

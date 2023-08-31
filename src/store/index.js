@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { authApi, dashboardApi, questionApi, submissionApi, userApi } from "./api";
+import { authApi, dashboardApi, questionApi, storageApi, submissionApi, userApi } from "./api";
 import { default as rootReducer } from "./reducers";
 
 export function makeStore() {
@@ -10,6 +10,7 @@ export function makeStore() {
       [authApi.reducerPath]: authApi.reducer,
       [dashboardApi.reducerPath]: dashboardApi.reducer,
       [questionApi.reducerPath]: questionApi.reducer,
+      [storageApi.reducerPath]: storageApi.reducer,
       [submissionApi.reducerPath]: submissionApi.reducer,
       [userApi.reducerPath]: userApi.reducer
     }),
@@ -18,6 +19,7 @@ export function makeStore() {
         .concat(authApi.middleware)
         .concat(dashboardApi.middleware)
         .concat(questionApi.middleware)
+        .concat(storageApi.middleware)
         .concat(submissionApi.middleware)
         .concat(userApi.middleware);
       return middleware;
