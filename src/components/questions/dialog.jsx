@@ -3,6 +3,7 @@ import { Paperclip } from "lucide-react";
 import { default as MdEditor } from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import { useSelector } from "react-redux";
+import { default as omitBy } from "lodash/omitBy";
 import { default as pick } from "lodash/pick";
 import { default as MarkdownIt } from "markdown-it";
 import { enabledFilters, questionFilters } from "@/filters";
@@ -29,11 +30,11 @@ const close = () => store.dispatch(toggleAddQuestionDialog(false));
 const initialFormData = {
   name: "",
   description: "",
-  difficulty: "EASY",
+  difficulty: "",
   constraints: "",
-  max_score: 5,
-  enabled: true,
-  creator_lock: true,
+  max_score: 0,
+  enabled: "",
+  creator_lock: "",
   codebase_url: ""
 };
 
@@ -65,11 +66,17 @@ const QuestionDialog = ({ refresh }) => {
     e.preventDefault();
     setUploading(true);
     try {
-      const payload = {
-        ...formData,
-        constraints: formData.constraints?.split(",")?.map((c) => c.trim()).filter((c) => c),
-        codebase_url: file ? await uploadQuestion(formData.name, file) : formData.codebase_url
-      };
+      const payload = omitBy(
+        {
+          ...formData,
+          constraints: formData.constraints
+            ?.split(",")
+            ?.map((c) => c.trim())
+            .filter((c) => c),
+          codebase_url: file ? await uploadQuestion(formData.name, file) : formData.codebase_url
+        },
+        (v) => v === ""
+      );
       if (selectedQuestion) {
         await updateQuestion({ id: selectedQuestion._id, data: pick(payload, Object.keys(initialFormData)) })
           .unwrap()
