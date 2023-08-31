@@ -52,7 +52,7 @@ export default function QuestionDetails() {
               <div className="flex flex-wrap gap-3 [&>span]:px-3 [&>span]:py-2 [&>span]:rounded-lg [&>span]:transition-all [&>span]:duration-medium">
                 <Footnote>{startCase(question?.difficulty?.toLowerCase())}</Footnote>
                 <Footnote>{question?.max_score}PT</Footnote>
-                <Footnote>{question?.constraints?.join(", ")}</Footnote>
+                {question?.constraints?.length && <Footnote>{question?.constraints?.join(", ")}</Footnote>}
               </div>
               <ActionButtons question={question} />
             </div>
