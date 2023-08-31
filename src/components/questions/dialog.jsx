@@ -67,7 +67,7 @@ const QuestionDialog = ({ refresh }) => {
     try {
       const payload = {
         ...formData,
-        constraints: formData.constraints?.split(",")?.map((c) => c.trim()),
+        constraints: formData.constraints?.split(",")?.map((c) => c.trim()).filter((c) => c),
         codebase_url: file ? await uploadQuestion(formData.name, file) : formData.codebase_url
       };
       if (selectedQuestion) {
