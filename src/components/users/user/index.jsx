@@ -86,9 +86,7 @@ export const User = ({ user }) => {
           <IconButton
             className={twMerge(
               "ml-auto self-center mt-2 md:mt-0",
-              user.is_active
-                ? "text-green-400 hover:text-red-500"
-                : "text-red-500 hover:text-green-400"
+              user.is_active ? "text-green-400 hover:text-red-500" : "text-red-500 hover:text-green-400"
             )}
             variant="secondary"
             icon={<Power size={16} />}

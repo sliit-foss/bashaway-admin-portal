@@ -14,8 +14,8 @@ import {
 } from "chart.js";
 import { default as isEqual } from "lodash/isEqual";
 import { useBreakpoint } from "@/hooks";
-import { Body2 } from "@sliit-foss/bashaway-ui/typography";
 import { useGetRegistrationInfoQuery } from "@/store/api";
+import { Body2 } from "@sliit-foss/bashaway-ui/typography";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend, Filler);
 

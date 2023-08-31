@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { accessRequestLink } from "@/constants";
 import { useTitle } from "@/hooks";
 import { store } from "@/store";
 import { authApi, useLoginMutation } from "@/store/api";
@@ -44,9 +45,9 @@ const Login = () => {
         </Button>
         <span>
           <Caption className="text-black/40 mr-1.5">Don&apos;t have an account?</Caption>
-          <Link to="/register">
-            <Caption className="link">Sign up here</Caption>
-          </Link>
+          <a href={accessRequestLink}>
+            <Caption className="link">Request access</Caption>
+          </a>
         </span>
       </form>
     </div>

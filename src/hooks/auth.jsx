@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authUser } from "@/utils";
 
-export const whitelistedPaths = ["login", "register", "forgot-password", "reset-password"];
+export const whitelistedPaths = ["login", "forgot-password", "reset-password"];
 
 const useAuth = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const useAuth = () => {
       (localStorage.getItem("access_token") && authUser()?.role !== "ADMIN")
     ) {
       navigate("/login");
-    } else if (["/login", "/register"].includes(location.pathname) && localStorage.getItem("access_token")) {
+    } else if (["/login"].includes(location.pathname) && localStorage.getItem("access_token")) {
       navigate("/");
     }
     setCompleted(true);

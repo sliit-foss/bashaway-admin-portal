@@ -24,9 +24,6 @@ export const authApi = createApi({
         return response;
       }
     }),
-    register: builder.mutation({
-      query: (data) => post(`/api/auth/register`, data)
-    }),
     requestPasswordResetCode: builder.mutation({
       query: (data) => post(`/api/auth/forgot_password`, data)
     }),
@@ -44,7 +41,6 @@ export const authApi = createApi({
 
 export const {
   useLoginMutation,
-  useRegisterMutation,
   useRequestPasswordResetCodeMutation,
   useResetPasswordMutation,
   useAuthUserQuery,
