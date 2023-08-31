@@ -10,8 +10,11 @@ export const dashboardApi = createApi({
     }),
     getQuestionSubmissions: builder.query({
       query: () => `/api//dashboard/submissions`
+    }),
+    getTeamSubmissions: builder.query({
+      query: () => `/api//dashboard/submissions/team`
     })
   })
 });
 
-export const { useGetRegistrationInfoQuery, useGetQuestionSubmissionsQuery } = dashboardApi;
+export const { useGetRegistrationInfoQuery, useGetQuestionSubmissionsQuery, useGetTeamSubmissionsQuery } = dashboardApi;

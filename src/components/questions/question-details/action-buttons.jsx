@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
-import { Button } from "@sliit-foss/bashaway-ui/components";
 import { store } from "@/store";
 import { setSelectedQuestion, toggleAddQuestionDialog } from "@/store/reducers/ui/question";
+import { Button } from "@sliit-foss/bashaway-ui/components";
 
 const onEditClick = (question) => {
   store.dispatch(setSelectedQuestion(question));

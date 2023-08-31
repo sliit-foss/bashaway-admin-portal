@@ -1,5 +1,4 @@
-import { Settings } from "lucide-react";
-import { Skeleton, Metric } from "@sliit-foss/bashaway-ui/components";
+import { Skeleton } from "@sliit-foss/bashaway-ui/components";
 
 const UserGridSkeleton = ({ className }) => {
   return (

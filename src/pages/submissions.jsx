@@ -1,9 +1,15 @@
 import { useState } from "react";
+import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { GradeDialog, Submission, SubmissionListSkeleton } from "@/components/submissions";
 import { submissionFilters, submissionSorts } from "@/filters";
 import { useTitle } from "@/hooks";
-import { useGetAllSubmissionsQuery, useGetAllUsersQuery, useGetQuestionByIdQuery, useLazyGetAllSubmissionsQuery } from "@/store/api";
+import {
+  useGetAllSubmissionsQuery,
+  useGetAllUsersQuery,
+  useGetQuestionByIdQuery,
+  useLazyGetAllSubmissionsQuery
+} from "@/store/api";
 import {
   AnimatedSwitcher,
   BreadCrumbs,
@@ -15,7 +21,6 @@ import {
 } from "@sliit-foss/bashaway-ui/components";
 import { Body2 } from "@sliit-foss/bashaway-ui/typography";
 import { computeFilterQuery, computeSortQuery } from "@sliit-foss/bashaway-ui/utils";
-import { useMemo } from "react";
 
 const Submissions = () => {
   const { id: questionId } = useParams();
@@ -40,14 +45,18 @@ const Submissions = () => {
 
   const refresh = () => trigger({ filters: `filter[question]=${questionId}&${filters}`, sorts, page });
 
-  const filterOptions = useMemo(() => submissionFilters.map((filter) => {
-    if (filter.key == "user" && teams)
-      filter.options = teams?.map((team) => ({
-        key: team._id,
-        label: team.name
-      }));
-    return filter;
-  }), [teams]);
+  const filterOptions = useMemo(
+    () =>
+      submissionFilters.map((filter) => {
+        if (filter.key == "user" && teams)
+          filter.options = teams?.map((team) => ({
+            key: team._id,
+            label: team.name
+          }));
+        return filter;
+      }),
+    [teams]
+  );
 
   useTitle("Submissions | Bashaway");
 
@@ -74,13 +83,20 @@ const Submissions = () => {
           <Filters
             filters={filterOptions}
             setFilterQuery={setFilters}
-            styles={{ root: "md:w-7/12 lg:w-6/12 xl:w-5/12", filter: "md:w-3/4 lg:w-1/2 xl:w-5/12 2xl:w-4/12", input: "sm:h-12" }}
+            styles={{
+              root: "md:w-7/12 lg:w-6/12 xl:w-5/12",
+              filter: "md:w-3/4 lg:w-1/2 xl:w-5/12 2xl:w-4/12",
+              input: "sm:h-12"
+            }}
           />
           <div className="xl:w-3/12" />
           <Sorts
             sorts={submissionSorts}
             setSortQuery={setSorts}
-            styles={{ root: "md:w-5/12 lg:w-6/12 xl:w-4/12 justify-end", sort: "md:w-full justify-center md:justify-end" }}
+            styles={{
+              root: "md:w-5/12 lg:w-6/12 xl:w-4/12 justify-end",
+              sort: "md:w-full justify-center md:justify-end"
+            }}
           />
         </div>
         <div className="flex flex-col flex-1 justify-between mt-8">

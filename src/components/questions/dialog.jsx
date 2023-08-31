@@ -79,7 +79,7 @@ const QuestionDialog = ({ refresh }) => {
           .unwrap()
           .then(() => toast({ title: `Question added successfully` }));
       }
-      store.dispatch(questionApi.util.resetApiState())
+      store.dispatch(questionApi.util.resetApiState());
       close();
       refresh();
     } catch (e) {
@@ -119,7 +119,14 @@ const QuestionDialog = ({ refresh }) => {
           <AlertDialogHeader>
             <AlertDialogTitle>{selectedQuestion ? "Edit" : "Add"} Question</AlertDialogTitle>
           </AlertDialogHeader>
-          <Input placeholder="Name *" name="name" required className="sm:h-14" value={formData.name} onChange={onChange} />
+          <Input
+            placeholder="Name *"
+            name="name"
+            required
+            className="sm:h-14"
+            value={formData.name}
+            onChange={onChange}
+          />
           <div className="flex flex-col md:flex-row gap-3">
             <Dropdown
               filterkey="difficulty"

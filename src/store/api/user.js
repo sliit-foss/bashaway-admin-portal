@@ -22,4 +22,10 @@ export const userApi = createApi({
   })
 });
 
-export const { useGetAllUsersQuery, useLazyGetAllUsersQuery, useAddUserMutation, useUpdateUserMutation, useChangePasswordMutation } = userApi;
+export const {
+  useGetAllUsersQuery,
+  useLazyGetAllUsersQuery,
+  useAddUserMutation,
+  useUpdateUserMutation,
+  useChangePasswordMutation
+} = userApi;

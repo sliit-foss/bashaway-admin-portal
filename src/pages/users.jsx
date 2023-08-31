@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
+import { User, UserDialog, UserGridSkeleton } from "@/components/users";
 import { userFilters } from "@/filters";
 import { useTitle } from "@/hooks";
 import { store } from "@/store";
 import { useGetAllUsersQuery, useLazyGetAllUsersQuery, userApi } from "@/store/api";
+import { toggleAddUserDialog } from "@/store/reducers/ui/user";
 import { AnimatedSwitcher, Button, Filters, NoRecords, Pagination } from "@sliit-foss/bashaway-ui/components";
 import { computeFilterQuery } from "@sliit-foss/bashaway-ui/utils";
-import { User, UserGridSkeleton, UserDialog } from "@/components/users";
-import { toggleAddUserDialog } from "@/store/reducers/ui/user";
 
 const gridStyles = "w-full h-full grid grid-cols-1 lg:grid-cols-2 justify-start items-center gap-5";
 
@@ -22,21 +22,28 @@ const Users = () => {
   const [trigger] = useLazyGetAllUsersQuery();
 
   const refresh = () => {
-    store.dispatch(userApi.util.resetApiState())
+    store.dispatch(userApi.util.resetApiState());
     trigger({ filters, page });
-  }
+  };
 
   useTitle("Users | Bashaway");
 
   return (
     <>
-      <Filters filters={userFilters} setFilterQuery={setFilters} action={<Button
-        className="w-full py-4"
-        onClick={onAddClick}
-      >
-        <Plus strokeWidth="2.5" />
-        Add User
-      </Button>} styles={{ root: "md:grid grid-cols-5 self-center mb-8 [&>div:nth-child(2)]:col-span-2 [&>div:nth-child(3)]:col-span-2 [&>div:nth-child(4)]:col-span-2", filter: "md:w-auto" }} />
+      <Filters
+        filters={userFilters}
+        setFilterQuery={setFilters}
+        action={
+          <Button className="w-full py-4" onClick={onAddClick}>
+            <Plus strokeWidth="2.5" />
+            Add User
+          </Button>
+        }
+        styles={{
+          root: "md:grid grid-cols-5 self-center mb-8 [&>div:nth-child(2)]:col-span-2 [&>div:nth-child(3)]:col-span-2 [&>div:nth-child(4)]:col-span-2",
+          filter: "md:w-auto"
+        }}
+      />
       <div className="w-full min-h-[60vh] flex flex-col gap-12 justify-between items-center">
         <AnimatedSwitcher
           show={isFetching || isError}

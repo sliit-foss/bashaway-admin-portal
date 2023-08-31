@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { store } from "@/store";
 import { useGradeSubmissionMutation } from "@/store/api";
+import { toggleGradeSubmissionDialog } from "@/store/reducers/ui/submission";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -11,7 +12,6 @@ import {
   Input,
   toast
 } from "@sliit-foss/bashaway-ui/components";
-import { toggleGradeSubmissionDialog } from "@/store/reducers/ui/submission";
 
 const close = () => store.dispatch(toggleGradeSubmissionDialog(false));
 
@@ -19,19 +19,22 @@ const GradeDialog = ({ refresh }) => {
   const selectedSubmission = useSelector((store) => store.ui.submission.selected);
   const open = useSelector((store) => store.ui.submission.showGradeSubmissionDialog);
 
-  const [gradeSubmission, {isLoading}] = useGradeSubmissionMutation();
+  const [gradeSubmission, { isLoading }] = useGradeSubmissionMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await gradeSubmission({
-      id: selectedSubmission._id, data: {
+      id: selectedSubmission._id,
+      data: {
         score: e.target.score.value
       }
-    }).unwrap().then(() => {
-      toast({ title: `Question updated successfully` })
-      close();
-      refresh();
-    });
+    })
+      .unwrap()
+      .then(() => {
+        toast({ title: `Question updated successfully` });
+        close();
+        refresh();
+      });
   };
 
   return (

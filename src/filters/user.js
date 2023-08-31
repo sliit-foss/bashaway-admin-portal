@@ -21,7 +21,24 @@ export const userFilters = [
   {
     key: "member_count",
     label: "Member Count",
-    directSearch: true
+    options: [
+      {
+        key: 1,
+        label: "One"
+      },
+      {
+        key: 2,
+        label: "Two"
+      },
+      {
+        key: 3,
+        label: "Three"
+      },
+      {
+        key: 4,
+        label: "Four"
+      }
+    ]
   },
   {
     key: "role",

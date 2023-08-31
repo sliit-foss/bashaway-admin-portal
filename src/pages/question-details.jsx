@@ -5,13 +5,13 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { isEmpty, startCase } from "lodash";
 import { twMerge } from "tailwind-merge";
+import { QuestionDialog } from "@/components";
 import { ActionButtons } from "@/components/questions/question-details";
 import { useEffectOnce, useTitle } from "@/hooks";
 import { selectQuestionById, useGetQuestionByIdQuery, useLazyGetQuestionByIdQuery } from "@/store/api";
 import { challengeColor } from "@/utils";
 import { AnimatedSwitcher, Badge, BreadCrumbs, Skeleton } from "@sliit-foss/bashaway-ui/components";
 import { Body3, Footnote } from "@sliit-foss/bashaway-ui/typography";
-import { QuestionDialog } from "@/components";
 
 export default function QuestionDetails() {
   const { id } = useParams();
