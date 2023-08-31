@@ -8,7 +8,7 @@ const containerClient = blobServiceClient.getContainerClient(import.meta.env.VIT
 
 export const uploadFile = async (file) => {
   const blockBlobClient = containerClient.getBlockBlobClient(
-    `${authUser()?.name}/${new Date().toLocaleString()}/${file.name}`
+    `${authUser()?.name}/${new Date().toISOString()}/${file.name}`
   );
   await blockBlobClient.uploadBrowserData(file);
   return blockBlobClient.url;
