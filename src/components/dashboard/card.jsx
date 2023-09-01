@@ -20,13 +20,13 @@ const DashboardCard = ({ icon: Icon, title, value, className }) => {
   return (
     <div
       className={twMerge(
-        "p-5 rounded-[20px] hover:bg-gray-100/90 hover:border-gray-100/90 text-black hover:card-red-title border flex flex-col gap-1 md:gap-2 cursor-default transition-all duration-medium",
+        "p-5 rounded-[20px] group hover:bg-gray-100/60 hover:border-gray-100/60 text-black border flex flex-col gap-1 md:gap-2 cursor-default transition-all duration-medium",
         className
       )}
     >
-      <Icon className="opacity-20 w-6 h-6 md:w-8 md:h-8 text-black" />
+      <Icon className="opacity-20 group-hover:opacity-30 w-6 h-6 md:w-8 md:h-8 text-black transition-all duration-medium" />
       <span className="text-2xl md:text-3xl lg:text-[40px] mt-2 md:mt-4">{value}</span>
-      <Footnote className="font-medium text-black/40 text-start">{title}</Footnote>
+      <Footnote className="font-medium text-black/40 group-hover:text-black/[0.55] text-start transition-all duration-medium">{title}</Footnote>
     </div>
   );
 };
