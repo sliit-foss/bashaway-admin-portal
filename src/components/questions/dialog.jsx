@@ -54,6 +54,8 @@ const QuestionDialog = ({ refresh }) => {
         constraints: selectedQuestion.constraints?.join(",")
       });
       setFile(null);
+    } else {
+      setFormData(initialFormData)
     }
   }, [selectedQuestion]);
 
