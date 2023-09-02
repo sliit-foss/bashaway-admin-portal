@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { default as omitBy } from "lodash/omitBy";
 import { default as pick } from "lodash/pick";
 import { default as MarkdownIt } from "markdown-it";
-import { enabledFilters, questionFilters } from "@/filters";
+import { enabledFilters, exactTruthyFilters, questionFilters } from "@/filters";
 import { uploadQuestion } from "@/services";
 import { store } from "@/store";
 import { questionApi, useAddQuestionMutation, useAuthUserQuery, useUpdateQuestionMutation } from "@/store/api";
@@ -35,6 +35,7 @@ const initialFormData = {
   max_score: 0,
   enabled: "",
   creator_lock: "",
+  strict_inputs: "",
   codebase_url: ""
 };
 
@@ -55,7 +56,7 @@ const QuestionDialog = ({ refresh }) => {
       });
       setFile(null);
     } else {
-      setFormData(initialFormData)
+      setFormData(initialFormData);
     }
   }, [selectedQuestion]);
 
@@ -177,13 +178,23 @@ const QuestionDialog = ({ refresh }) => {
               onChange={onChange}
             />
           </div>
-          <Input
-            placeholder="Constraints (Comma Separated)"
-            name="constraints"
-            value={formData.constraints}
-            className="sm:h-14"
-            onChange={onChange}
-          />
+          <div className="flex flex-col md:flex-row gap-3">
+            <Dropdown
+              filterkey="strict_inputs"
+              label="Strict Inputs"
+              options={exactTruthyFilters}
+              className="sm:h-14"
+              value={formData.strict_inputs}
+              onChange={onChange}
+            />
+            <Input
+              placeholder="Constraints (Comma Separated)"
+              name="constraints"
+              value={formData.constraints}
+              className="sm:h-14"
+              onChange={onChange}
+            />
+          </div>
           <Input
             placeholder="Select Attachment *"
             name="codebase_url"

@@ -26,7 +26,9 @@ const DashboardCard = ({ icon: Icon, title, value, className }) => {
     >
       <Icon className="opacity-20 group-hover:opacity-30 w-6 h-6 md:w-8 md:h-8 text-black transition-all duration-medium" />
       <span className="text-2xl md:text-3xl lg:text-[40px] mt-2 md:mt-4">{value}</span>
-      <Footnote className="font-medium text-black/40 group-hover:text-black/[0.55] text-start transition-all duration-medium">{title}</Footnote>
+      <Footnote className="font-medium text-black/40 group-hover:text-black/[0.55] text-start transition-all duration-medium">
+        {title}
+      </Footnote>
     </div>
   );
 };

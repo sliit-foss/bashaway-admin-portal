@@ -46,9 +46,7 @@ export default function QuestionDetails() {
                 <CheckCircle2 size={16} />
               </Badge>
               <Body3 className="font-bold transition-all duration-medium">{question?.name}</Body3>
-              <ReactMarkdown className="markdown [&>p]:font-semibold">
-                {question?.description}
-              </ReactMarkdown>
+              <ReactMarkdown className="markdown [&>p]:font-semibold">{question?.description}</ReactMarkdown>
               <div className="flex flex-wrap gap-3 [&>span]:px-3 [&>span]:py-2 [&>span]:rounded-lg [&>span]:transition-all [&>span]:duration-medium">
                 <Footnote>{startCase(question?.difficulty?.toLowerCase())}</Footnote>
                 <Footnote>{question?.max_score}PT</Footnote>

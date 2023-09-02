@@ -30,3 +30,8 @@ export const truthyFilters = [
     label: "No"
   }
 ];
+
+export const exactTruthyFilters = truthyFilters.map((filter) => ({
+  ...filter,
+  key: filter.key === "true"
+}));
