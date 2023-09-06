@@ -31,7 +31,10 @@ export const authApi = createApi({
       query: ({ code, data }) => post(`/api/auth/reset_password/${code}`, data)
     }),
     authUser: builder.query({
-      query: () => `/api/auth/current`
+      query: () => `/api/auth/current`,
+      extraOptions: {
+        silent: true
+      }
     }),
     logout: builder.mutation({
       query: () => post(`/api/auth/logout`)
