@@ -50,10 +50,10 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
       result = await baseQuery(args, api, extraOptions);
     }
   }
-  if (result.error && result.error.data.message !== "Unauthorized") {
+  if (result.error && result.error.data?.message !== "Unauthorized") {
     toast({
       variant: "destructive",
-      title: result.error.data.message
+      title: result.error.data?.message ?? "Just patching things up. This'll be over in a jiffy!"
     });
   }
   return result;
