@@ -3,7 +3,7 @@ import { Skeleton } from "@sliit-foss/bashaway-ui/components";
 import { Footnote } from "@sliit-foss/bashaway-ui/typography";
 
 const DashboardCard = ({ icon: Icon, title, value, className }) => {
-  if (!value)
+  if (value === undefined)
     return (
       <Skeleton
         containerClassName="flex w-full h-full"
