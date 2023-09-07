@@ -89,6 +89,7 @@ const QuestionDialog = ({ refresh }) => {
           .unwrap()
           .then(() => toast({ title: `Question added successfully` }));
       }
+      setFormData(initialFormData)
       store.dispatch(questionApi.util.resetApiState());
       close();
       refresh();
