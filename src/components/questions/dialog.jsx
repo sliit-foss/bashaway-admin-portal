@@ -215,7 +215,7 @@ const QuestionDialog = ({ refresh }) => {
           />
           <AlertDialogFooter className="mt-4">
             <Button type="submit" loading={uploading}>
-              {selectedQuestion ? "Edit" : "Add"}
+              {selectedQuestion ? "Save" : "Add"}
             </Button>
             <Button variant="secondary" type="button" onClick={close}>
               Cancel
