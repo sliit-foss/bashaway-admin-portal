@@ -6,13 +6,13 @@ export const dashboardApi = createApi({
   baseQuery,
   endpoints: (builder) => ({
     getRegistrationInfo: builder.query({
-      query: () => `/api//dashboard/registrations`
+      query: () => `/api/dashboard/registrations`
     }),
     getQuestionSubmissions: builder.query({
-      query: () => `/api//dashboard/submissions`
+      query: () => `/api/dashboard/submissions`
     }),
     getTeamSubmissions: builder.query({
-      query: () => `/api//dashboard/submissions/team`
+      query: () => `/api/dashboard/submissions/team`
     })
   })
 });
