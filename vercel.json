@@ -2,10 +2,10 @@
   "github": {
     "silent": true
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
