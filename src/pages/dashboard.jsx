@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   return (
     <div className="w-full min-h-[60vh] flex flex-col gap-7 items-start">
-      <div className="w-full h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-start items-center gap-5">
+      <div className="w-full h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-start items-start gap-5">
         <DashboardCard icon={Building} title="Universities" value={registrationInfo?.university_counts?.length} />
         <DashboardCard icon={Users} title="Teams" value={registrationInfo?.total_registrations} />
         <DashboardCard icon={Users2} title="Individuals" value={registrationInfo?.total_members} />

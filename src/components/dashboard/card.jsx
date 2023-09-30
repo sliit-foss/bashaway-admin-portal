@@ -6,7 +6,7 @@ const DashboardCard = ({ icon: Icon, title, value, className }) => {
   if (value === undefined)
     return (
       <Skeleton
-        containerClassName="flex w-full h-full"
+        containerClassName="flex w-full h-full max-h-[10.5rem]"
         className="w-full h-full p-5 flex flex-col gap-2 rounded-[20px] "
       >
         <Skeleton className="w-6 h-6 md:w-8 md:h-8 rounded-lg" shade="dark" />
