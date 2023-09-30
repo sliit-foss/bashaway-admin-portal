@@ -40,8 +40,8 @@ const Users = () => {
           </Button>
         }
         styles={{
-          root: "md:grid grid-cols-5 self-center mb-8 [&>div:nth-child(2)]:col-span-2 [&>div:nth-child(3)]:col-span-2 [&>div:nth-child(4)]:col-span-2",
-          filter: "md:w-auto"
+          root: "md:grid grid-cols-5 self-start mb-8 [&>div:nth-child(2)]:col-span-2 [&>div:nth-child(3)]:col-span-2 [&>div:nth-child(4)]:col-span-2",
+          filter: "md:w-auto h-auto"
         }}
       />
       <div className="w-full min-h-[60vh] flex flex-col gap-12 justify-between items-center">
