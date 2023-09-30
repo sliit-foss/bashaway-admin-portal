@@ -58,7 +58,8 @@ export const User = ({ user }) => {
                   metric={<GraduationCap size={16} />}
                   styles={{
                     root: "h-full",
-                    metric: "flex h-full flex justify-center items-center text-black"
+                    metric: "w-auto flex h-full flex justify-center items-center text-black",
+                    animate: "w-full",
                   }}
                   value={user.university}
                 />
@@ -75,7 +76,8 @@ export const User = ({ user }) => {
                 metric={<Settings size={16} />}
                 styles={{
                   root: "h-full card-red-body",
-                  metric: "flex h-full flex justify-center items-center text-black card-red-title"
+                  metric: "w-auto flex h-full flex justify-center items-center text-black card-red-title",
+                  animate: "w-full",
                 }}
                 value="ADMIN"
               />
