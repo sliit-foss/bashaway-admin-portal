@@ -40,7 +40,7 @@ const Users = () => {
           </Button>
         }
         styles={{
-          root: "md:grid grid-cols-5 self-start mb-8 [&>div:nth-child(2)]:col-span-2 [&>div:nth-child(3)]:col-span-2 [&>div:nth-child(4)]:col-span-2",
+          root: "md:grid grid-cols-5 self-start mb-8 [&>div:nth-child(2)]:col-span-2 [&>div:nth-child(3)]:col-span-2 [&>div:nth-child(4)]:col-span-2 mt-4",
           filter: "md:w-auto h-auto"
         }}
       />

@@ -11,7 +11,7 @@ const Profile = () => {
   useEffectOnce(() => window.scroll({ top: 0, behavior: "smooth" }));
 
   return (
-    <div className="w-full flex flex-col items-center min-h-[60vh]">
+    <div className="w-full flex flex-col items-center min-h-[60vh] mt-4">
       <BreadCrumbs breadcrumbs={["Home", "Profile"]} />
       <div className="flex-1 flex flex-col justify-center items-center mt-8">
         <ProfileHeader team={team} />

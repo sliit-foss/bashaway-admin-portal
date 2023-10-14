@@ -31,7 +31,7 @@ const Questions = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col justify-center items-center gap-6 mb-8">
+      <div className="w-full flex flex-col justify-center items-center gap-6 mb-8 mt-4">
         <div className="w-full flex flex-col md:flex-row gap-6">
           <Button
             className="w-full md:w-5/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12 py-[13px] sm:py-4 md:py-1.5"

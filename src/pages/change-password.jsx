@@ -26,7 +26,7 @@ const ChangePassword = () => {
   useTitle("Change Password | Bashaway");
 
   return (
-    <div className="w-full min-h-[70vh] flex flex-col justify-center items-center">
+    <div className="w-full min-h-[70vh] flex flex-col justify-center items-center mt-4">
       <form className="w-full max-w-form flex flex-col items-center gap-5" onSubmit={handleChange}>
         <div className="flex flex-col items-center gap-3 md:gap-2 mb-6 pointer-events-none">
           <Title>Change Password</Title>
@@ -47,8 +47,8 @@ const ChangePassword = () => {
         <Button className="w-full h-14 sm:h-16 text-[20px] mt-6" loading={isLoading}>
           Change
         </Button>
-        <span>
-          <Caption className="text-black/40 mr-1.5">Fine with your old password?</Caption>
+        <span className="text-center">
+          <Caption className="text-black/40 mr-1.5 ">Fine with your old password?</Caption>
           <Link to="/profile">
             <Caption className="link">Back to profile</Caption>
           </Link>

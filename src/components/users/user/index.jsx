@@ -59,7 +59,7 @@ export const User = ({ user }) => {
                   styles={{
                     root: "h-full",
                     metric: "w-auto flex h-full flex justify-center items-center text-black",
-                    animate: "w-full",
+                    animate: "w-full"
                   }}
                   value={user.university}
                 />
@@ -77,7 +77,7 @@ export const User = ({ user }) => {
                 styles={{
                   root: "h-full card-red-body",
                   metric: "w-auto flex h-full flex justify-center items-center text-black card-red-title",
-                  animate: "w-full",
+                  animate: "w-full"
                 }}
                 value="ADMIN"
               />

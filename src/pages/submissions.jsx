@@ -71,6 +71,7 @@ const Submissions = () => {
           },
           "Submissions"
         ]}
+        className="mt-4"
       />
       <div className="w-full h-full min-h-[70vh] flex flex-col border py-7 px-5 md:px-7 rounded-3xl mt-12 lg:mt-8">
         <AnimatedSwitcher

@@ -32,7 +32,7 @@ export default function QuestionDetails() {
 
   return (
     <>
-      <BreadCrumbs breadcrumbs={[{ label: "Home", path: "/questions" }, "Challenge"]} />
+      <BreadCrumbs breadcrumbs={[{ label: "Home", path: "/questions" }, "Challenge"]} className="mt-4" />
       <div className="group h-full w-full animated-border text-border from-black/20 to-border p-5 rounded-3xl mt-12 lg:mt-8">
         <AnimatedSwitcher
           show={!isEmpty(question)}

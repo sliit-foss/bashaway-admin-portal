@@ -29,7 +29,7 @@ const Login = () => {
   useTitle("Login | Bashaway");
 
   return (
-    <div className="w-full min-h-[70vh] flex flex-col justify-center items-center">
+    <div className="w-full min-h-[70vh] flex flex-col justify-center items-center mt-4">
       <form className="w-full max-w-form flex flex-col items-center gap-5" onSubmit={handleLogin}>
         <div className="flex flex-col items-center gap-3 md:gap-2 mb-6 pointer-events-none">
           <Title>Welcome back</Title>

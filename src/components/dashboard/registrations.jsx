@@ -19,8 +19,8 @@ import { Body2 } from "@sliit-foss/bashaway-ui/typography";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend, Filler);
 
-const RegistrationChart = () => {
-  const { data: { data: registrationInfo } = {} } = useGetRegistrationInfoQuery();
+const RegistrationChart = ({ round }) => {
+  const { data: { data: registrationInfo } = {} } = useGetRegistrationInfoQuery({ round });
 
   const { md, lg } = useBreakpoint();
 
@@ -64,7 +64,7 @@ const RegistrationChart = () => {
           ]
         }}
         width={lg ? 1920 : window.innerWidth * 0.75}
-        height={md ? 530 : 530}
+        height={430}
         options={{
           responsive: md,
           indexAxis: lg ? "x" : "y",
