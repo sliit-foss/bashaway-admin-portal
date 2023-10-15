@@ -6,16 +6,15 @@ export const dashboardApi = createApi({
   baseQuery,
   endpoints: (builder) => ({
     getRegistrationInfo: builder.query({
-      query: ({ round, ghost_legion = false }) =>
-        `/api/dashboard/registrations?round=${round}&ghost_legion=${ghost_legion}`
+      query: ({ round, ghostLegion = false }) =>
+        `/api/dashboard/registrations?round=${round}&ghost_legion=${ghostLegion}`
     }),
     getQuestionSubmissions: builder.query({
-      query: ({ round, ghost_legion = false }) =>
-        `/api/dashboard/submissions?round=${round}&ghost_legion=${ghost_legion}`
+      query: ({ round, ghostLegion = false }) => `/api/dashboard/submissions?round=${round}&ghost_legion=${ghostLegion}`
     }),
     getTeamSubmissions: builder.query({
-      query: ({ round, ghost_legion = false }) =>
-        `/api/dashboard/submissions/team?round=${round}&ghost_legion=${ghost_legion}`
+      query: ({ round, ghostLegion = false }) =>
+        `/api/dashboard/submissions/team?round=${round}&ghost_legion=${ghostLegion}`
     })
   })
 });
