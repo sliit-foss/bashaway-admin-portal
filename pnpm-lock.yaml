@@ -17,8 +17,8 @@ dependencies:
     specifier: 1.9.5
     version: 1.9.5(react-redux@8.1.2)(react@18.0.0)
   '@sliit-foss/bashaway-ui':
-    specifier: 0.10.3
-    version: 0.10.3(@babel/core@7.22.9)(@types/react-dom@18.0.11)(@types/react@18.0.28)(redux@4.2.1)(tailwindcss@3.3.2)
+    specifier: 0.10.6
+    version: 0.10.6(@babel/core@7.22.9)(@types/react-dom@18.0.11)(@types/react@18.0.28)(redux@4.2.1)(tailwindcss@3.3.2)
   async-mutex:
     specifier: ^0.4.0
     version: 0.4.0
@@ -1655,8 +1655,8 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
-  /@sliit-foss/bashaway-ui@0.10.3(@babel/core@7.22.9)(@types/react-dom@18.0.11)(@types/react@18.0.28)(redux@4.2.1)(tailwindcss@3.3.2):
-    resolution: {integrity: sha512-7hI44+c+mdJUqLPNi8t/WY5ivlmpMSiARs/FFHF8Wkf4PUcJl3xkEjoo54oXr21fS+LNzRm/AWi/qTLuOk3FwA==}
+  /@sliit-foss/bashaway-ui@0.10.6(@babel/core@7.22.9)(@types/react-dom@18.0.11)(@types/react@18.0.28)(redux@4.2.1)(tailwindcss@3.3.2):
+    resolution: {integrity: sha512-yPuAq1yArfOaIZS5fbm+bnFp/zw5QC2Oger7+QcRO2+BTimmUK9YEi5d39Id+YhUIl1bJ/euNqyRg+Ag80upQA==}
     dependencies:
       '@radix-ui/react-accordion': 1.1.2(@types/react-dom@18.0.11)(@types/react@18.0.28)(react-dom@18.0.0)(react@18.0.0)
       '@radix-ui/react-alert-dialog': 1.0.4(@types/react-dom@18.0.11)(@types/react@18.0.28)(react-dom@18.0.0)(react@18.0.0)
