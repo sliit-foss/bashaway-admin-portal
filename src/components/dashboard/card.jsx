@@ -2,8 +2,8 @@ import { twMerge } from "tailwind-merge";
 import { Skeleton } from "@sliit-foss/bashaway-ui/components";
 import { Footnote } from "@sliit-foss/bashaway-ui/typography";
 
-const DashboardCard = ({ icon: Icon, title, value, className }) => {
-  if (value === undefined)
+const DashboardCard = ({ icon: Icon, title, value, className, loading = false }) => {
+  if (value === undefined || loading)
     return (
       <Skeleton
         containerClassName="flex w-full h-full max-h-[10.5rem]"
