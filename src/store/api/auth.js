@@ -11,7 +11,7 @@ export const authApi = createApi({
     login: builder.mutation({
       query: (data) => post(`/api/auth/login`, data),
       transformResponse: (response) => {
-        if (response.data.user?.role !== "ADMIN") {
+        if (response.data.user?.role !== "ADMIN" && response.data.user?.role !== "SPECTATOR") {
           toast({
             variant: "destructive",
             title: "You are not authorized to access this portal"
@@ -20,6 +20,7 @@ export const authApi = createApi({
         } else {
           localStorage.setItem("access_token", response.data.access_token);
           localStorage.setItem("refresh_token", response.data.refresh_token);
+          localStorage.setItem("role", response.data.user.role);
         }
         return response;
       }

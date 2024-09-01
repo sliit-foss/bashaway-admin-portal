@@ -85,18 +85,22 @@ export const User = ({ user }) => {
           </div>
         </div>
         <div className="ml-auto flex items-center">
-          <IconButton
-            className={twMerge(
-              "ml-auto self-center mt-2 md:mt-0",
-              user.is_active ? "text-green-400 hover:text-red-500" : "text-red-500 hover:text-green-400"
-            )}
-            variant="secondary"
-            icon={<Power size={16} />}
-            label={user.is_active ? "Deactivate" : "Activate"}
-            onClick={toggleActiveStatus}
-            loading={isLoading}
-            loaderProps={{ width: 16, height: 16 }}
-          />
+          {localStorage.getItem("role") == "ADMIN" ? (
+            <IconButton
+              className={twMerge(
+                "ml-auto self-center mt-2 md:mt-0",
+                user.is_active ? "text-green-400 hover:text-red-500" : "text-red-500 hover:text-green-400"
+              )}
+              variant="secondary"
+              icon={<Power size={16} />}
+              label={user.is_active ? "Deactivate" : "Activate"}
+              onClick={toggleActiveStatus}
+              loading={isLoading}
+              loaderProps={{ width: 16, height: 16 }}
+            />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

@@ -20,14 +20,16 @@ const ActionButtons = ({ question, className, buttonClassName }) => {
       >
         View submissions
       </Button>
-      <Button
-        variant="secondary"
-        className={twMerge("bg-transparent", buttonClassName)}
-        onClick={() => onEditClick(question)}
-        disabled={!question}
-      >
-        Edit
-      </Button>
+      {localStorage.getItem("role") == "ADMIN" ? (
+        <Button
+          variant="secondary"
+          className={twMerge("bg-transparent", buttonClassName)}
+          onClick={() => onEditClick(question)}
+          disabled={!question}
+        >
+          Edit
+        </Button>
+      ) : null}
     </div>
   );
 };
