@@ -4,7 +4,7 @@ import { default as baseQuery, mutationHelper } from "./base";
 
 const { post } = mutationHelper;
 
-const authorizedRoles = ["ADMIN", "SPECTATOR"];
+export const authorizedRoles = ["ADMIN", "SPECTATOR"];
 
 export const authApi = createApi({
   reducerPath: "authApi",
