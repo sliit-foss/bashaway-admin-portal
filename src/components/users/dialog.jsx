@@ -30,7 +30,7 @@ const UserDialog = ({ refresh }) => {
     await addUser({
       name: e.target.name.value,
       email: e.target.email.value,
-      role: e.target.role.value
+      role
     })
       .unwrap()
       .then(() => {
@@ -58,7 +58,7 @@ const UserDialog = ({ refresh }) => {
             className="sm:h-14"
             label="Select Role"
             name="role"
-            options={userRoleOptions}
+            options={userRoleOptions.filter((option) => option.key !== "GROUP")}
             value={role}
             onChange={(e) => setRole(e.target.value)}
           />
