@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { userRoleOptions } from "@/filters";
 import { store } from "@/store";
 import { useAddUserMutation } from "@/store/api";
 import { toggleAddUserDialog } from "@/store/reducers/ui/user";
@@ -57,10 +58,7 @@ const UserDialog = ({ refresh }) => {
             className="sm:h-14"
             label="Select Role"
             name="role"
-            options={[
-              { key: "Admin", label: "ADMIN" },
-              { key: "Spectator", label: "SPECTATOR" }
-            ]}
+            options={userRoleOptions}
             value={role}
             onChange={(e) => setRole(e.target.value)}
           />
