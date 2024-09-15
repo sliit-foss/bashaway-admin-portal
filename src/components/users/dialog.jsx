@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { store } from "@/store";
 import { useAddUserMutation } from "@/store/api";
@@ -21,6 +22,8 @@ const UserDialog = ({ refresh }) => {
 
   const [addUser, { isLoading }] = useAddUserMutation();
 
+  const [role, setRole] = useState();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await addUser({
@@ -30,7 +33,7 @@ const UserDialog = ({ refresh }) => {
     })
       .unwrap()
       .then(() => {
-        toast({ title: `Admin user added successfully` });
+        toast({ title: `User added successfully` });
         close();
         refresh();
       });
@@ -58,6 +61,8 @@ const UserDialog = ({ refresh }) => {
               { key: "Admin", label: "ADMIN" },
               { key: "Spectator", label: "SPECTATOR" }
             ]}
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
           />
           <AlertDialogFooter className="mt-4">
             <Button type="submit" loading={isLoading}>
