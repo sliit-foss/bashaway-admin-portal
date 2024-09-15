@@ -1,5 +1,20 @@
 import { activeFilters } from "./common";
 
+export const userRoleOptions = [
+  {
+    key: "GROUP",
+    label: "Team"
+  },
+  {
+    key: "ADMIN",
+    label: "Admin"
+  },
+  {
+    key: "SPECTATOR",
+    label: "Spectator"
+  }
+];
+
 export const userFilters = [
   {
     key: "name",
@@ -43,15 +58,6 @@ export const userFilters = [
   {
     key: "role",
     label: "Role",
-    options: [
-      {
-        key: "GROUP",
-        label: "Team"
-      },
-      {
-        key: "ADMIN",
-        label: "Admin"
-      }
-    ]
+    options: userRoleOptions
   }
 ];

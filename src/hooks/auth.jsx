@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { authorizedRoles } from "@/constants";
 import { authUser } from "@/utils";
 
 export const whitelistedPaths = ["login", "forgot-password", "reset-password"];
@@ -13,7 +14,7 @@ const useAuth = () => {
   useEffect(() => {
     if (
       (!localStorage.getItem("access_token") && !whitelistedPaths.includes(location.pathname.split("/")[1])) ||
-      (localStorage.getItem("access_token") && authUser()?.role !== "ADMIN")
+      (localStorage.getItem("access_token") && !authorizedRoles.includes(authUser()?.role))
     ) {
       navigate("/login");
     } else if (["/login"].includes(location.pathname) && localStorage.getItem("access_token")) {

@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
+import { authorizedRoles } from "@/constants";
 import { toast } from "@sliit-foss/bashaway-ui";
-import baseQuery, { mutationHelper } from "./base";
+import { default as baseQuery, mutationHelper } from "./base";
 
 const { post } = mutationHelper;
 
@@ -11,7 +12,7 @@ export const authApi = createApi({
     login: builder.mutation({
       query: (data) => post(`/api/auth/login`, data),
       transformResponse: (response) => {
-        if (response.data.user?.role !== "ADMIN") {
+        if (!authorizedRoles.includes(response.data.user?.role)) {
           toast({
             variant: "destructive",
             title: "You are not authorized to access this portal"

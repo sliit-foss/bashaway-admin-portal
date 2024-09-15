@@ -2,6 +2,7 @@ import { GraduationCap, Power, Settings } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { store } from "@/store";
 import { useUpdateUserMutation, userApi } from "@/store/api";
+import { useAuthUserQuery } from "@/store/api";
 import { IconButton, Metric, toast } from "@sliit-foss/bashaway-ui/components";
 import { Body2, Callout } from "@sliit-foss/bashaway-ui/typography";
 
@@ -9,6 +10,7 @@ export { default as UserGridSkeleton } from "./skeleton";
 
 export const User = ({ user }) => {
   const [updateUser, { isLoading }] = useUpdateUserMutation();
+  const { data: { data: authUser } = {} } = useAuthUserQuery();
 
   const toggleActiveStatus = () => {
     updateUser({
@@ -85,18 +87,20 @@ export const User = ({ user }) => {
           </div>
         </div>
         <div className="ml-auto flex items-center">
-          <IconButton
-            className={twMerge(
-              "ml-auto self-center mt-2 md:mt-0",
-              user.is_active ? "text-green-400 hover:text-red-500" : "text-red-500 hover:text-green-400"
-            )}
-            variant="secondary"
-            icon={<Power size={16} />}
-            label={user.is_active ? "Deactivate" : "Activate"}
-            onClick={toggleActiveStatus}
-            loading={isLoading}
-            loaderProps={{ width: 16, height: 16 }}
-          />
+          {authUser?.role == "ADMIN" && (
+            <IconButton
+              className={twMerge(
+                "ml-auto self-center mt-2 md:mt-0",
+                user.is_active ? "text-green-400 hover:text-red-500" : "text-red-500 hover:text-green-400"
+              )}
+              variant="secondary"
+              icon={<Power size={16} />}
+              label={user.is_active ? "Deactivate" : "Activate"}
+              onClick={toggleActiveStatus}
+              loading={isLoading}
+              loaderProps={{ width: 16, height: 16 }}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { User, UserDialog, UserGridSkeleton } from "@/components/users";
 import { userFilters } from "@/filters";
 import { useTitle } from "@/hooks";
 import { store } from "@/store";
-import { useGetAllUsersQuery, useLazyGetAllUsersQuery, userApi } from "@/store/api";
+import { useAuthUserQuery, useGetAllUsersQuery, useLazyGetAllUsersQuery, userApi } from "@/store/api";
 import { toggleAddUserDialog } from "@/store/reducers/ui/user";
 import { AnimatedSwitcher, Button, Filters, NoRecords, Pagination } from "@sliit-foss/bashaway-ui/components";
 import { computeFilterQuery } from "@sliit-foss/bashaway-ui/utils";
@@ -18,6 +18,8 @@ const Users = () => {
   const [filters, setFilters] = useState(computeFilterQuery(userFilters));
 
   const { data: users, isFetching, isError } = useGetAllUsersQuery({ filters, page });
+
+  const { data: { data: authUser } = {} } = useAuthUserQuery();
 
   const [trigger] = useLazyGetAllUsersQuery();
 
@@ -34,10 +36,12 @@ const Users = () => {
         filters={userFilters}
         setFilterQuery={setFilters}
         action={
-          <Button className="w-full py-4" onClick={onAddClick}>
-            <Plus strokeWidth="2.5" />
-            Add User
-          </Button>
+          authUser?.role === "ADMIN" && (
+            <Button className="w-full py-4" onClick={onAddClick}>
+              <Plus strokeWidth="2.5" />
+              Add User
+            </Button>
+          )
         }
         styles={{
           root: "md:grid grid-cols-5 self-start mb-8 [&>div:nth-child(2)]:col-span-2 [&>div:nth-child(3)]:col-span-2 [&>div:nth-child(4)]:col-span-2 mt-4",

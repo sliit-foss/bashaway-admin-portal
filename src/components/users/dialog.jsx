@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import { userRoleOptions } from "@/filters";
 import { store } from "@/store";
 import { useAddUserMutation } from "@/store/api";
 import { toggleAddUserDialog } from "@/store/reducers/ui/user";
@@ -9,6 +11,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   Button,
+  Dropdown,
   Input,
   toast
 } from "@sliit-foss/bashaway-ui/components";
@@ -20,15 +23,18 @@ const UserDialog = ({ refresh }) => {
 
   const [addUser, { isLoading }] = useAddUserMutation();
 
+  const [role, setRole] = useState();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await addUser({
       name: e.target.name.value,
-      email: e.target.email.value
+      email: e.target.email.value,
+      role
     })
       .unwrap()
       .then(() => {
-        toast({ title: `Admin user added successfully` });
+        toast({ title: `User added successfully` });
         close();
         refresh();
       });
@@ -44,10 +50,18 @@ const UserDialog = ({ refresh }) => {
       <AlertDialogContent overlayClassName="z-[201]" className="z-[201]">
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <AlertDialogHeader>
-            <AlertDialogTitle>Add Admin</AlertDialogTitle>
+            <AlertDialogTitle>Add User</AlertDialogTitle>
           </AlertDialogHeader>
           <Input placeholder="Name" name="name" required className="sm:h-14" />
           <Input placeholder="Email" name="email" type="email" required className="sm:h-14" />
+          <Dropdown
+            className="sm:h-14"
+            label="Select Role"
+            name="role"
+            options={userRoleOptions.filter((option) => option.key !== "GROUP")}
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+          />
           <AlertDialogFooter className="mt-4">
             <Button type="submit" loading={isLoading}>
               Add
