@@ -14,6 +14,8 @@ const ActionButtons = ({ question, className, buttonClassName }) => {
   const navigate = useNavigate();
   const { data: { data: authUser } = {} } = useAuthUserQuery();
 
+  if (authUser?.role !== "ADMIN") return <></>;
+
   return (
     <div className={twMerge("flex flex-col md:flex-row gap-3 mt-1", className)}>
       <Button
@@ -23,16 +25,14 @@ const ActionButtons = ({ question, className, buttonClassName }) => {
       >
         View submissions
       </Button>
-      {authUser?.role == "ADMIN" && (
-        <Button
-          variant="secondary"
-          className={twMerge("bg-transparent", buttonClassName)}
-          onClick={() => onEditClick(question)}
-          disabled={!question}
-        >
-          Edit
-        </Button>
-      )}
+      <Button
+        variant="secondary"
+        className={twMerge("bg-transparent", buttonClassName)}
+        onClick={() => onEditClick(question)}
+        disabled={!question}
+      >
+        Edit
+      </Button>
     </div>
   );
 };

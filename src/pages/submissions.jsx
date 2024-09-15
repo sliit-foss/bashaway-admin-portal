@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useMemo } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { GradeDialog, Submission, SubmissionListSkeleton } from "@/components/submissions";
 import { submissionFilters, submissionSorts } from "@/filters";
 import { useTitle } from "@/hooks";
 import {
+  useAuthUserQuery,
   useGetAllSubmissionsQuery,
   useGetAllUsersQuery,
   useGetQuestionByIdQuery,
@@ -23,6 +26,7 @@ import { Body2 } from "@sliit-foss/bashaway-ui/typography";
 import { computeFilterQuery, computeSortQuery } from "@sliit-foss/bashaway-ui/utils";
 
 const Submissions = () => {
+  const navigate = useNavigate();
   const { id: questionId } = useParams();
 
   const [page, setPage] = useState(1);
@@ -34,6 +38,8 @@ const Submissions = () => {
   const { data: { data: question } = {} } = useGetQuestionByIdQuery(questionId);
 
   const { data: { data: teams } = {} } = useGetAllUsersQuery({ filters: `filter[role]=GROUP` });
+
+  const { data: { data: authUser } = {} } = useAuthUserQuery();
 
   const {
     data: submissions,
@@ -59,6 +65,12 @@ const Submissions = () => {
   );
 
   useTitle("Submissions | Bashaway");
+
+  useEffect(() => {
+    if (authUser && authUser.role !== "ADMIN") {
+      navigate("/");
+    }
+  }, [authUser]);
 
   return (
     <>
