@@ -4,7 +4,7 @@ import { Question, QuestionDialog, QuestionGridSkeleton } from "@/components/que
 import { questionFilters, questionSorts } from "@/filters";
 import { useTitle } from "@/hooks";
 import { store } from "@/store";
-import { useGetQuestionsQuery, useLazyGetQuestionsQuery } from "@/store/api";
+import { useAuthUserQuery, useGetQuestionsQuery, useLazyGetQuestionsQuery } from "@/store/api";
 import { setSelectedQuestion, toggleAddQuestionDialog } from "@/store/reducers/ui/question";
 import { AnimatedSwitcher, Button, Filters, NoRecords, Pagination, Sorts } from "@sliit-foss/bashaway-ui/components";
 import { computeFilterQuery, computeSortQuery } from "@sliit-foss/bashaway-ui/utils";
@@ -23,6 +23,8 @@ const Questions = () => {
 
   const { data: questions, isFetching, isError } = useGetQuestionsQuery({ filters, sorts, page });
 
+  const { data: { data: authUser } = {} } = useAuthUserQuery();
+
   const [trigger] = useLazyGetQuestionsQuery();
 
   const refresh = () => trigger({ filters, sorts, page });
@@ -33,13 +35,15 @@ const Questions = () => {
     <>
       <div className="w-full flex flex-col justify-center items-center gap-6 mb-8 mt-4">
         <div className="w-full flex flex-col md:flex-row gap-6">
-          <Button
-            className="w-full md:w-5/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12 py-[13px] sm:py-4 md:py-1.5"
-            onClick={onAddClick}
-          >
-            <Plus strokeWidth="2.5" />
-            Add Question
-          </Button>
+          {authUser?.role === "ADMIN" && (
+            <Button
+              className="w-full md:w-5/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12 py-[13px] sm:py-4 md:py-1.5"
+              onClick={onAddClick}
+            >
+              <Plus strokeWidth="2.5" />
+              Add Question
+            </Button>
+          )}
           <Filters filters={questionFilters} setFilterQuery={setFilters} />
         </div>
         <Sorts sorts={questionSorts} setSortQuery={setSorts} />

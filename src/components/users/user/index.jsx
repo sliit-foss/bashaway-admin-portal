@@ -87,7 +87,7 @@ export const User = ({ user }) => {
           </div>
         </div>
         <div className="ml-auto flex items-center">
-          {authUser?.role == "ADMIN" ? (
+          {authUser?.role == "ADMIN" && (
             <IconButton
               className={twMerge(
                 "ml-auto self-center mt-2 md:mt-0",
@@ -100,8 +100,6 @@ export const User = ({ user }) => {
               loading={isLoading}
               loaderProps={{ width: 16, height: 16 }}
             />
-          ) : (
-            <></>
           )}
         </div>
       </div>

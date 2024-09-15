@@ -23,7 +23,7 @@ const ActionButtons = ({ question, className, buttonClassName }) => {
       >
         View submissions
       </Button>
-      {authUser.role == "ADMIN" ? (
+      {authUser?.role == "ADMIN" && (
         <Button
           variant="secondary"
           className={twMerge("bg-transparent", buttonClassName)}
@@ -32,7 +32,7 @@ const ActionButtons = ({ question, className, buttonClassName }) => {
         >
           Edit
         </Button>
-      ) : null}
+      )}
     </div>
   );
 };
