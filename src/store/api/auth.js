@@ -1,10 +1,9 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
+import { authorizedRoles } from "@/constants";
 import { toast } from "@sliit-foss/bashaway-ui";
 import { default as baseQuery, mutationHelper } from "./base";
 
 const { post } = mutationHelper;
-
-export const authorizedRoles = ["ADMIN", "SPECTATOR"];
 
 export const authApi = createApi({
   reducerPath: "authApi",

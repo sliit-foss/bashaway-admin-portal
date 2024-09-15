@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { authorizedRoles } from "@/store/api/auth";
+import { authorizedRoles } from "@/constants";
 import { authUser } from "@/utils";
 
 export const whitelistedPaths = ["login", "forgot-password", "reset-password"];
