@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import { store } from "@/store";
+import { useAuthUserQuery } from "@/store/api";
 import { setSelectedQuestion, toggleAddQuestionDialog } from "@/store/reducers/ui/question";
 import { Button } from "@sliit-foss/bashaway-ui/components";
 
@@ -11,6 +12,8 @@ const onEditClick = (question) => {
 
 const ActionButtons = ({ question, className, buttonClassName }) => {
   const navigate = useNavigate();
+  const { data: { data: authUser } = {} } = useAuthUserQuery();
+
   return (
     <div className={twMerge("flex flex-col md:flex-row gap-3 mt-1", className)}>
       <Button
@@ -20,14 +23,16 @@ const ActionButtons = ({ question, className, buttonClassName }) => {
       >
         View submissions
       </Button>
-      <Button
-        variant="secondary"
-        className={twMerge("bg-transparent", buttonClassName)}
-        onClick={() => onEditClick(question)}
-        disabled={!question}
-      >
-        Edit
-      </Button>
+      {authUser?.role == "ADMIN" && (
+        <Button
+          variant="secondary"
+          className={twMerge("bg-transparent", buttonClassName)}
+          onClick={() => onEditClick(question)}
+          disabled={!question}
+        >
+          Edit
+        </Button>
+      )}
     </div>
   );
 };

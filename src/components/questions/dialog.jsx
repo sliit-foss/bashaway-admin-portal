@@ -60,7 +60,7 @@ const QuestionDialog = ({ refresh }) => {
     }
   }, [selectedQuestion]);
 
-  const { data: { data: user } = {} } = useAuthUserQuery();
+  const { data: { data: authUser } = {} } = useAuthUserQuery();
 
   const [addQuestion] = useAddQuestionMutation();
   const [updateQuestion] = useUpdateQuestionMutation();
@@ -159,7 +159,7 @@ const QuestionDialog = ({ refresh }) => {
             />
           </div>
           <div className="flex flex-col md:flex-row gap-3">
-            {(!selectedQuestion || selectedQuestion.creator === user._id) && (
+            {(!selectedQuestion || selectedQuestion.creator === authUser._id) && (
               <Dropdown
                 filterkey="creator_lock"
                 label="Creator Lock"

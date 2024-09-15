@@ -12,9 +12,14 @@ const Dashboard = () => {
 
   const { ghostLegion, toggleGhostLegion } = useGhostLegion();
 
-  const { data: { data: registrationInfo } = {}, isFetching: isRegistrationInfoFetching } = useGetRegistrationInfoQuery({ round, ghostLegion });
-  const { data: { data: questionSubmissionInfo } = {}, isFetching: isQuestionSubmissionsFetching } = useGetQuestionSubmissionsQuery({ round, ghostLegion });
-  const { data: { data: teamSubmissionInfo } = {}, isFetching: isTeamSubmissionsFetching } = useGetTeamSubmissionsQuery({ round, ghostLegion });
+  const { data: { data: registrationInfo } = {}, isFetching: isRegistrationInfoFetching } = useGetRegistrationInfoQuery(
+    { round, ghostLegion }
+  );
+  const { data: { data: questionSubmissionInfo } = {}, isFetching: isQuestionSubmissionsFetching } =
+    useGetQuestionSubmissionsQuery({ round, ghostLegion });
+  const { data: { data: teamSubmissionInfo } = {}, isFetching: isTeamSubmissionsFetching } = useGetTeamSubmissionsQuery(
+    { round, ghostLegion }
+  );
 
   useTitle("Dashboard | Bashaway");
 
@@ -30,10 +35,30 @@ const Dashboard = () => {
         <GhostLegion ghostLegion={ghostLegion} toggleGhostLegion={toggleGhostLegion} round={round} />
       </div>
       <div className="w-full h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-start items-start gap-5">
-        <DashboardCard icon={Building} title="Universities" value={registrationInfo?.university_counts?.length} loading={isRegistrationInfoFetching}/>
-        <DashboardCard icon={Users} title="Teams" value={registrationInfo?.total_registrations} loading={isRegistrationInfoFetching}/>
-        <DashboardCard icon={Users2} title="Individuals" value={registrationInfo?.total_members} loading={isRegistrationInfoFetching}/>
-        <DashboardCard icon={Folder} title="Submissions" value={totalSubmissions} loading={isQuestionSubmissionsFetching}/>
+        <DashboardCard
+          icon={Building}
+          title="Universities"
+          value={registrationInfo?.university_counts?.length}
+          loading={isRegistrationInfoFetching}
+        />
+        <DashboardCard
+          icon={Users}
+          title="Teams"
+          value={registrationInfo?.total_registrations}
+          loading={isRegistrationInfoFetching}
+        />
+        <DashboardCard
+          icon={Users2}
+          title="Individuals"
+          value={registrationInfo?.total_members}
+          loading={isRegistrationInfoFetching}
+        />
+        <DashboardCard
+          icon={Folder}
+          title="Submissions"
+          value={totalSubmissions}
+          loading={isQuestionSubmissionsFetching}
+        />
         <DashboardCard
           className="col-span-2 md:col-span-1"
           icon={UserGroup}
