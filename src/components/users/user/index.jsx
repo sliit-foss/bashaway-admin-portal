@@ -1,4 +1,5 @@
 import { GraduationCap, Power, Settings } from "lucide-react";
+import { View } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { store } from "@/store";
 import { useUpdateUserMutation, userApi } from "@/store/api";
@@ -54,7 +55,7 @@ export const User = ({ user }) => {
           <Body2 className="font-bold font-inter transition-all duration-medium text-start">{user.name}</Body2>
           <Callout className="lg:text-[18px] text-start">{user.email}</Callout>
           <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-3 text-sm sm:text-base items-center text-black/40">
-            {user.role !== "ADMIN" ? (
+            {user.role === "GROUP" ? (
               <>
                 <Metric
                   metric={<GraduationCap size={16} />}
@@ -75,13 +76,13 @@ export const User = ({ user }) => {
               </>
             ) : (
               <Metric
-                metric={<Settings size={16} />}
+                metric={user.role == "ADMIN" ? <Settings size={16} /> : <View size={16} />}
                 styles={{
                   root: "h-full card-red-body",
                   metric: "w-auto flex h-full flex justify-center items-center text-black card-red-title",
                   animate: "w-full"
                 }}
-                value="ADMIN"
+                value={user.role}
               />
             )}
           </div>
