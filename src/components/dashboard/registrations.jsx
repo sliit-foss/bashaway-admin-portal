@@ -40,11 +40,30 @@ const RegistrationChart = ({ round, ghostLegion }) => {
     const labels = [],
       data = [],
       colors = [];
+
+    // Group universities by normalized (lowercase) name to handle case-insensitive aggregation
+    const universityMap = new Map();
+
     registrationInfo?.university_counts?.forEach((university) => {
+      const normalizedName = university.name.toLowerCase();
+      if (universityMap.has(normalizedName)) {
+        const existing = universityMap.get(normalizedName);
+        existing.count += university.count;
+      } else {
+        universityMap.set(normalizedName, {
+          name: university.name,
+          count: university.count
+        });
+      }
+    });
+
+    // Convert map to arrays for the chart
+    universityMap.forEach((university) => {
       labels.push(university.name);
       data.push(university.count);
       colors.push("#ffcccc");
     });
+
     return { labels, data, colors };
   }, [registrationInfo]);
 
