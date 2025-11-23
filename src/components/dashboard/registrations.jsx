@@ -45,6 +45,8 @@ const RegistrationChart = ({ round, ghostLegion }) => {
     const universityMap = new Map();
 
     registrationInfo?.university_counts?.forEach((university) => {
+      if (!university.name) return; // Skip entries with null or undefined names
+
       const normalizedName = university.name.toLowerCase();
       if (universityMap.has(normalizedName)) {
         const existing = universityMap.get(normalizedName);
