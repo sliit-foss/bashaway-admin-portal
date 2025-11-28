@@ -24,6 +24,20 @@ export const questionFilters = [
         label: "Extreme"
       }
     ]
+  },
+  {
+    key: "enabled",
+    label: "Status",
+    options: [
+      {
+        key: "true",
+        label: "Enabled"
+      },
+      {
+        key: "false",
+        label: "Disabled"
+      }
+    ]
   }
 ];
 
@@ -31,11 +45,16 @@ export const questionSorts = [
   {
     key: "max_score",
     label: "Sort by points",
-    direction: 0
+    direction: -1
   },
   {
     key: "created_at",
     label: "Sort by upload time",
     direction: -1
+  },
+  {
+    key: "name",
+    label: "Sort by name",
+    direction: 1
   }
 ];
