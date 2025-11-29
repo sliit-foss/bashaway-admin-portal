@@ -20,8 +20,8 @@ export const questionApi = createApi({
     updateQuestion: builder.mutation({
       query: ({ id, data }) => patch(`/api/questions/${id}`, data)
     }),
-    bulkUpdateQuestionStatus: builder.mutation({
-      query: (data) => patch(`/api/questions/bulk/status`, data)
+    bulkUpdateQuestions: builder.mutation({
+      query: (data) => patch(`/api/questions`, data)
     })
   })
 });
@@ -43,5 +43,5 @@ export const {
   useLazyGetQuestionByIdQuery,
   useAddQuestionMutation,
   useUpdateQuestionMutation,
-  useBulkUpdateQuestionStatusMutation
+  useBulkUpdateQuestionsMutation
 } = questionApi;

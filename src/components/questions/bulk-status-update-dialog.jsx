@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { store } from "@/store";
-import { useBulkUpdateQuestionStatusMutation } from "@/store/api";
-import { toggleBulkStatusDialog } from "@/store/reducers/ui/question";
+import { useBulkUpdateQuestionsMutation } from "@/store/api";
+import { toggleBulkQuestionStatusUpdateDialog } from "@/store/reducers/ui/question";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -13,15 +13,15 @@ import {
   toast
 } from "@sliit-foss/bashaway-ui/components";
 
-const close = () => store.dispatch(toggleBulkStatusDialog({ open: false }));
+const close = () => store.dispatch(toggleBulkQuestionStatusUpdateDialog({ open: false }));
 
-const BulkStatusDialog = ({ refresh }) => {
+const BulkQuestionStatusUpdateDialog = ({ refresh }) => {
   const { open, enabled } = useSelector((store) => store.ui.question.bulkStatusDialog);
 
-  const [bulkUpdateStatus, { isLoading }] = useBulkUpdateQuestionStatusMutation();
+  const [bulkUpdateQuestions, { isLoading }] = useBulkUpdateQuestionsMutation();
 
   const handleConfirm = async () => {
-    await bulkUpdateStatus({ enabled })
+    await bulkUpdateQuestions({ enabled })
       .unwrap()
       .then((res) => {
         toast({ title: res.message });
@@ -38,7 +38,7 @@ const BulkStatusDialog = ({ refresh }) => {
         <AlertDialogHeader>
           <AlertDialogTitle>Confirm Bulk {enabled ? "Enable" : "Disable"}</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to {action} ALL questions? This action will affect all questions in the system.
+            Are you sure you that want to {action} ALL questions? This will affect all questions in the system.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter className="mt-4">
@@ -54,4 +54,4 @@ const BulkStatusDialog = ({ refresh }) => {
   );
 };
 
-export default BulkStatusDialog;
+export default BulkQuestionStatusUpdateDialog;

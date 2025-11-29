@@ -19,12 +19,12 @@ export const slice = createSlice({
     toggleAddQuestionDialog(state, action) {
       state.showAddQuestionDialog = action.payload;
     },
-    toggleBulkStatusDialog(state, action) {
+    toggleBulkQuestionStatusUpdateDialog(state, action) {
       state.bulkStatusDialog = action.payload;
     }
   }
 });
 
-export const { setSelectedQuestion, toggleAddQuestionDialog, toggleBulkStatusDialog } = slice.actions;
+export const { setSelectedQuestion, toggleAddQuestionDialog, toggleBulkQuestionStatusUpdateDialog } = slice.actions;
 
 export default slice.reducer;
