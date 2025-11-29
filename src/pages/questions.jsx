@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { Plus } from "lucide-react";
-import { Question, QuestionDialog, QuestionGridSkeleton } from "@/components/questions";
+import { Ban, Plus, Power } from "lucide-react";
+import { BulkQuestionStatusUpdateDialog, Question, QuestionDialog, QuestionGridSkeleton } from "@/components/questions";
 import { questionFilters, questionSorts } from "@/filters";
 import { useTitle } from "@/hooks";
 import { store } from "@/store";
 import { useAuthUserQuery, useGetQuestionsQuery, useLazyGetQuestionsQuery } from "@/store/api";
-import { setSelectedQuestion, toggleAddQuestionDialog } from "@/store/reducers/ui/question";
+import {
+  setSelectedQuestion,
+  toggleAddQuestionDialog,
+  toggleBulkQuestionStatusUpdateDialog
+} from "@/store/reducers/ui/question";
 import { AnimatedSwitcher, Button, Filters, NoRecords, Pagination, Sorts } from "@sliit-foss/bashaway-ui/components";
 import { computeFilterQuery, computeSortQuery } from "@sliit-foss/bashaway-ui/utils";
 
@@ -29,6 +33,10 @@ const Questions = () => {
 
   const refresh = () => trigger({ filters, sorts, page });
 
+  const openBulkStatusDialog = (enabled) => {
+    store.dispatch(toggleBulkQuestionStatusUpdateDialog({ open: true, enabled }));
+  };
+
   useTitle("Challenges | Bashaway");
 
   return (
@@ -36,13 +44,30 @@ const Questions = () => {
       <div className="w-full flex flex-col justify-center items-center gap-6 mb-8 mt-4">
         <div className="w-full flex flex-col md:flex-row gap-6">
           {authUser?.role === "ADMIN" && (
-            <Button
-              className="w-full md:w-5/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12 py-[13px] sm:py-4 md:py-1.5"
-              onClick={onAddClick}
-            >
-              <Plus strokeWidth="2.5" />
-              Add Question
-            </Button>
+            <div className="flex gap-3 shrink-0 justify-end">
+              <Button className="w-full py-[13px] sm:py-4 md:py-1.5 whitespace-nowrap" onClick={onAddClick}>
+                <Plus strokeWidth="2.5" />
+                Add Question
+              </Button>
+              <div className="rounded-full border-gray-100 border bg-black/10 p-2 flex gap-2">
+                <Button
+                  className="py-[13px] sm:py-4 md:py-1.5 whitespace-nowrap"
+                  variant="secondary"
+                  onClick={() => openBulkStatusDialog(false)}
+                >
+                  <Ban size={18} strokeWidth="2.5" />
+                  <span className="hidden xl:block">Disable All</span>
+                </Button>
+                <Button
+                  className="py-[13px] sm:py-4 md:py-1.5 whitespace-nowrap"
+                  variant="secondary"
+                  onClick={() => openBulkStatusDialog(true)}
+                >
+                  <Power size={18} strokeWidth="2.5" />
+                  <span className="hidden xl:block">Enable All</span>
+                </Button>
+              </div>
+            </div>
           )}
           <Filters filters={questionFilters} setFilterQuery={setFilters} />
         </div>
@@ -73,6 +98,7 @@ const Questions = () => {
         </div>
       </div>
       <QuestionDialog refresh={refresh} />
+      <BulkQuestionStatusUpdateDialog refresh={refresh} />
     </>
   );
 };

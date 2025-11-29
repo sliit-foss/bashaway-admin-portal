@@ -27,6 +27,10 @@ const UserDialog = ({ refresh }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!role) {
+      toast({ variant: "destructive", title: "Please select a role" });
+      return;
+    }
     await addUser({
       name: e.target.name.value,
       email: e.target.email.value,

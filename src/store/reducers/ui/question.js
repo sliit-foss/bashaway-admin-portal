@@ -2,7 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   selected: null,
-  showAddQuestionDialog: false
+  showAddQuestionDialog: false,
+  bulkStatusDialog: {
+    open: false,
+    enabled: false
+  }
 };
 
 export const slice = createSlice({
@@ -14,10 +18,13 @@ export const slice = createSlice({
     },
     toggleAddQuestionDialog(state, action) {
       state.showAddQuestionDialog = action.payload;
+    },
+    toggleBulkQuestionStatusUpdateDialog(state, action) {
+      state.bulkStatusDialog = action.payload;
     }
   }
 });
 
-export const { setSelectedQuestion, toggleAddQuestionDialog } = slice.actions;
+export const { setSelectedQuestion, toggleAddQuestionDialog, toggleBulkQuestionStatusUpdateDialog } = slice.actions;
 
 export default slice.reducer;

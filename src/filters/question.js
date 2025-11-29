@@ -24,10 +24,29 @@ export const questionFilters = [
         label: "Extreme"
       }
     ]
+  },
+  {
+    key: "enabled",
+    label: "Status",
+    options: [
+      {
+        key: "true",
+        label: "Enabled"
+      },
+      {
+        key: "false",
+        label: "Disabled"
+      }
+    ]
   }
 ];
 
 export const questionSorts = [
+  {
+    key: "name",
+    label: "Sort by name",
+    direction: 0
+  },
   {
     key: "max_score",
     label: "Sort by points",

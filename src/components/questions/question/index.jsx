@@ -32,12 +32,14 @@ export const Question = ({ question }) => {
           cardStyles
         )}
       >
-        <Body3 className="font-bold transition-all duration-medium">{question.name}</Body3>
+        <Body3 className={twMerge("font-bold transition-all duration-medium", !question.enabled && "line-through")}>
+          {question.name}
+        </Body3>
         <ReactMarkdown className="markdown [&>p]:font-semibold line-clamp-3">{cleanedDescription}</ReactMarkdown>
         <div className="flex flex-wrap gap-3 [&>span]:px-3 [&>span]:py-2 [&>span]:rounded-lg [&>span]:transition-all [&>span]:duration-medium">
           <Footnote>{startCase(question.difficulty.toLowerCase())}</Footnote>
           <Footnote>{question.max_score}PT</Footnote>
-          {question.constraints?.length && <Footnote>{question.constraints?.join(", ")}</Footnote>}
+          {question.constraints?.length > 0 && <Footnote>{question.constraints?.join(", ")}</Footnote>}
         </div>
       </div>
     </Link>
