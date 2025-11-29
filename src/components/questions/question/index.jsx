@@ -37,7 +37,10 @@ export const Question = ({ question }) => {
         <div className="flex flex-wrap gap-3 [&>span]:px-3 [&>span]:py-2 [&>span]:rounded-lg [&>span]:transition-all [&>span]:duration-medium">
           <Footnote>{startCase(question.difficulty.toLowerCase())}</Footnote>
           <Footnote>{question.max_score}PT</Footnote>
-          {question.constraints?.length && <Footnote>{question.constraints?.join(", ")}</Footnote>}
+          {question.constraints?.length > 0 && <Footnote>{question.constraints?.join(", ")}</Footnote>}
+          <Footnote className={question.enabled ? "!bg-green-500/20 !text-green-700" : "!bg-red-500/20 !text-red-700"}>
+            {question.enabled ? "Enabled" : "Disabled"}
+          </Footnote>
         </div>
       </div>
     </Link>

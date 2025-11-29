@@ -31,7 +31,7 @@ const GradeDialog = ({ refresh }) => {
     })
       .unwrap()
       .then(() => {
-        toast({ title: `Question updated successfully` });
+        toast({ title: `Submission graded successfully` });
         close();
         refresh();
       });

@@ -21,7 +21,7 @@ const useAuth = () => {
       navigate("/");
     }
     setCompleted(true);
-  }, [location]);
+  }, [location, navigate]);
 
   return completed;
 };
