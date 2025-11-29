@@ -46,7 +46,7 @@ export default function QuestionDetails() {
                 <CheckCircle2 size={16} />
               </Badge>
               <Body3
-                className={twMerge("font-bold transition-all duration-medium", !question.enabled && "line-through")}
+                className={twMerge("font-bold transition-all duration-medium", !question?.enabled && "line-through")}
               >
                 {question?.name}
               </Body3>
