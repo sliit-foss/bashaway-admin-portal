@@ -9,7 +9,7 @@ const Submission = ({ submission, ...props }) => {
   return (
     <div
       className={twMerge(
-        "group w-full flex flex-col md:flex-row items-center justify-between gap-2 border bg-gray-100/80 border-black/[0.05]",
+        "group w-full flex flex-col md:flex-row items-center justify-between gap-2 border bg-gray-100/80 border-black/5",
         "rounded-xl py-6 md:py-4 px-5 cursor-default transition-all duration-medium"
       )}
       {...props}

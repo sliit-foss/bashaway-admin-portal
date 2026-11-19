@@ -34,7 +34,7 @@ const BulkQuestionStatusUpdateDialog = ({ refresh }) => {
 
   return (
     <AlertDialog open={open} onOpenChange={(open) => !open && close()}>
-      <AlertDialogContent overlayClassName="z-[201]" className="z-[201]">
+      <AlertDialogContent overlayClassName="z-201" className="z-201">
         <AlertDialogHeader>
           <AlertDialogTitle>Confirm Bulk {enabled ? "Enable" : "Disable"}</AlertDialogTitle>
           <AlertDialogDescription>
