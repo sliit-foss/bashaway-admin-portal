@@ -21,7 +21,7 @@ const useEffectOnce = (effect) => {
 
     return () => {
       if (rendered.current === false) return;
-      if (destroyFn.current) destroyFn.current();
+      if (typeof destroyFn.current === "function") destroyFn.current();
     };
   }, []);
 };
