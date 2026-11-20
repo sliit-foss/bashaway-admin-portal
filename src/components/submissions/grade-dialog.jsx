@@ -44,7 +44,7 @@ const GradeDialog = ({ refresh }) => {
         if (!open) close();
       }}
     >
-      <AlertDialogContent overlayClassName="z-[201]" className="z-[201]">
+      <AlertDialogContent overlayClassName="z-201" className="z-201">
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <AlertDialogHeader>
             <AlertDialogTitle>Grade Submission</AlertDialogTitle>

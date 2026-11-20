@@ -91,7 +91,7 @@ const Submissions = () => {
           component={<Body2 className="text-[22px] font-medium">{question?.name}</Body2>}
           alternateComponent={<Skeleton className="h-[27px] lg:h-[30px] w-72" />}
         />
-        <div className="divider !bg-black/10 mt-4 mb-7" />
+        <div className="divider bg-black/10! mt-4 mb-7" />
         <div className="w-full flex flex-col md:flex-row gap-6">
           <Filters
             filters={filterOptions}

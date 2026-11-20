@@ -93,7 +93,7 @@ const QuestionDialog = ({ refresh }) => {
       store.dispatch(questionApi.util.resetApiState());
       close();
       refresh();
-    } catch (e) {
+    } catch {
       toast({ variant: "destructive", title: "Question upload failed" });
     } finally {
       setUploading(false);
@@ -125,7 +125,7 @@ const QuestionDialog = ({ refresh }) => {
         if (!open) close();
       }}
     >
-      <AlertDialogContent overlayClassName="z-[201]" className="z-[201] md:max-w-2xl lg:md:max-w-4xl xl:max-w-[1488px]">
+      <AlertDialogContent overlayClassName="z-201" className="z-201 md:max-w-2xl lg:md:max-w-4xl xl:max-w-[1488px]">
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <AlertDialogHeader>
             <AlertDialogTitle>{selectedQuestion ? "Edit" : "Add"} Question</AlertDialogTitle>
@@ -209,6 +209,7 @@ const QuestionDialog = ({ refresh }) => {
           <MdEditor
             style={{ height: "325px" }}
             placeholder="Enter description"
+            canView={{ hideMenu: false }}
             value={formData.description}
             renderHTML={(text) => mdParser.render(text)}
             onChange={handleEditorChange}
