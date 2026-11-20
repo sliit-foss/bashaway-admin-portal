@@ -93,8 +93,7 @@ const RegistrationChart = ({ round, ghostLegion }) => {
             precision: 0
           },
           scales: {
-            x: lg ? universityScale : undefined,
-            y: lg ? undefined : universityScale
+            [lg ? "x" : "y"]: universityScale
           },
           plugins: {
             legend: {
